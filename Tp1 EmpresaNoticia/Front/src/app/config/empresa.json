@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "denominacion": "Denominacion Empresa",
+        "telefono": "54026344644487",
+        "hAtecion": "14 a 24",
+        "qSomos": "Que somos----",
+        "longitud": 23.23,
+        "latitud": 22.22,
+        "domicilio": "Domicilio",
+        "email": "email@email"
+    },
+    {
+        "id": 4,
+        "denominacion": "Denominacion 4",
+        "telefono": "54026344644487",
+        "hAtecion": "14 a 24",
+        "qSomos": "Que somos----",
+        "longitud": 23.23,
+        "latitud": 22.22,
+        "domicilio": "Domicilio",
+        "email": "email@email"
+    },
+    {
+        "id": 5,
+        "denominacion": "Denominacion 2",
+        "telefono": "54026344644487",
+        "hAtecion": "14 a 24",
+        "qSomos": "Que somos----",
+        "longitud": 23.23,
+        "latitud": 22.22,
+        "domicilio": "Domicilio",
+        "email": "email@email"
+    },
+    {
+        "id": 6,
+        "denominacion": "Denominacion 2",
+        "telefono": "54026344644487",
+        "hAtecion": "14 a 24",
+        "qSomos": "Que somos----",
+        "longitud": 23.23,
+        "latitud": 22.22,
+        "domicilio": "Domicilio",
+        "email": "email@email"
+    }
+]
