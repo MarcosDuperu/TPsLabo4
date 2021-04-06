@@ -1,2 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/css/camera.css';
+@import './assets/css/search.css';
+@import './assets/css/google-map.css';
+
