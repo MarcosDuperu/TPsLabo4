@@ -1,14 +1,38 @@
 import { HojaRuta } from './HojaRuta';
-import { Detalle } from './Detalles';
+
 export class Vehiculo {
     patente: String;
     marca: String;
     modelo: String;
-    hojaRuta: HojaRuta;
-    detalles: Detalle;
+    hojasRutas: HojaRuta[]; //lista de hojas de ruta
+
+    //cosntructor:
+    constructor( patente:String, marca:String, modelo:String){
+        patente = this.patente;
+        marca = this.marca;
+        modelo = this.modelo;
+        
+    }
 
     calcularTotalKilometrosRecorridos(fechaDesde: Date, fechaHasta: Date) {
-        let mD = fechaDesde.getMinutes();
+       let i: number;
+       for(i = 0 ; i <= this.hojasRutas.length ; i ++){
+           if(this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta){ //valida segun el profe jajaj
+               this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
+           }
+       }
+
+        
+
+        
+      
+        
+    }
+}
+
+/**
+ * 
+ *  let mD = fechaDesde.getMinutes();
         let mH = fechaHasta.getMinutes();
         let hD = fechaDesde.getHours();
         let hH = fechaHasta.getHours();
@@ -21,8 +45,7 @@ export class Vehiculo {
 
         let minutos;
         let kmTotal; //kilometros recorridos total
-
-        if (fechaDesde == fechaHasta) {
+ * if (fechaDesde == fechaHasta) {
             if (hD == hH) {
                 minutos = mH - mD;
                 kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
@@ -53,12 +76,4 @@ export class Vehiculo {
             }
 
         }
-      
-        
-    }
-
-
-
-
-
-}
+ */
