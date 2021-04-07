@@ -15,11 +15,11 @@ export class HojaRuta {
         fecha = this.fecha;
     }
 
+    //para sacar los km total se tiene q restar los km de salida que son los que el 
+    //auto posee por los de regreso que fueron los q hizo pero ya sumados los de salida
     calcularTotalKilometro() {
         let totalKm: number;
-
-        totalKm = this.detalle.getKmSalida + this.detalle.getRegreso;
-
+        totalKm = this.detalle.getKmSalida - this.detalle.getRegreso;
         return totalKm;
     }
 }

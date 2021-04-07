@@ -6,39 +6,42 @@ export class Vehiculo {
     modelo: String;
     hojaRuta: HojaRuta;
     detalles: Detalle;
+
     calcularTotalKilometrosRecorridos(fechaDesde: Date, fechaHasta: Date) {
-     let contadorD = 0;
-        //minutos:
-     let mS = this.detalles.minutoSalida = fechaDesde.getMinutes();
-     let mE =  this.detalles.minutoRegreso = fechaHasta.getMinutes();
-
-      //horas:
-     let hS = this.detalles.horaSalida = fechaDesde.getHours();
-     let hE =this.detalles.horaRegreso = fechaHasta.getHours();
-
-        
-     
-
-        
-        
-
-        /*
-function calcularDiasAusencia(fechaIni, fechaFin) {
-  var diaEnMils = 1000 * 60 * 60 * 24,
-      desde = new Date(fechaIni.substr(0, 10)),
-      hasta = new Date(fechaFin.substr(0, 10)),
-      diff = hasta.getTime() - desde.getTime() + diaEnMils;// +1 incluir el dia de ini
-  return diff / diaEnMils;
-  var fecha1 = moment("2016-09-30 07:30:00", "YYYY-MM-DD HH:mm:ss");
-var fecha2 = moment("2016-10-03 07:30:00", "YYYY-MM-DD HH:mm:ss");
-
-var diff = fecha2.diff(fecha1, 'd'); // Diff in days
-console.log(diff);
-
-var diff = fecha2.diff(fecha1, 'h'); // Diff in hours
-console.log(diff);
-}
-    */
+        let mD = fechaDesde.getMinutes();
+        let mH = fechaHasta.getMinutes();
+        let hD = fechaDesde.getHours();
+        let hH = fechaHasta.getHours();
+        let minutos;
+        let kmTotal; //kilometros recorridos total
+        if (fechaDesde == fechaHasta) {
+            if (fechaDesde.getHours() == fechaHasta.getHours()) {
+                minutos = mH - mD;
+                kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+            } else { //si las fechas no son iguales
+                if(mD == mH){ //validacion de minutos
+                    minutos = ((hH - hD)*60/1)
+                    kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                    this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+                }else if(mD > mH){
+                    minutos = ((hH - hD)*60/1) + (mH + mD);
+                    kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                    this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+                }else{
+                    minutos = ((hH - hD)*60/1) + (mH - mD);
+                    kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                    this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+                }
+                
+            }
+        }
+        //hacer lo mismo como lo anterior solo q con dias
 
     }
+
+
+
+
+
 }
