@@ -3,8 +3,8 @@ import { Detalle } from './Detalles';
 export class HojaRuta {
     fecha: Date;
     numero: number;
-    vehiculo: Vehiculo[];
-    detalle: Detalle;
+    vehiculo: Vehiculo;
+    detalles: Detalle[]; //lista de detalles
 
 
     get getFecha (){
@@ -18,8 +18,16 @@ export class HojaRuta {
     //para sacar los km total se tiene q restar los km de salida que son los que el 
     //auto posee por los de regreso que fueron los q hizo pero ya sumados los de salida
     calcularTotalKilometro() {
-        let totalKm: number;
-        totalKm = this.detalle.getKmSalida - this.detalle.getRegreso;
-        return totalKm;
+        let kmTotal: number;
+        let kmSalida: number;
+        let kmRegreso: number;
+        let i: number;
+        //trae las todas las tablas de detalle
+        for( i = 0; i <= this.detalles.length ; i++ ){
+                kmSalida += this.detalles[i].getKmSalida;
+                kmRegreso += this.detalles[i].getkmRegreso;
+        }
+            kmTotal = kmSalida - kmRegreso;
+        return kmTotal;
     }
 }
