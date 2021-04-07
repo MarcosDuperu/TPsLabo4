@@ -6,7 +6,7 @@ export class Detalle{
     horaRegreso: number;
     minutoSalida: number;
     minutoRegreso: number;
-    HojaRuta: HojaRuta[];
+    HojaRuta: HojaRuta;
 
 
     get getKmSalida(){
@@ -17,7 +17,7 @@ export class Detalle{
         KmSalida = this.kmSalida;
     }
 
-    get getRegreso(){
+    get getkmRegreso(){
         return this.kmSalida;
     }
 

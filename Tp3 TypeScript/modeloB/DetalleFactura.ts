@@ -7,4 +7,10 @@ export class DetalleFactura{
     subtotal: number;
     factura: Factura;
     articulo: Articulo;
+
+
+    calcularSubtotal(){//creo q la relacion es alrevez pero el profe quiere esto
+        this.subtotal = this.articulo.precio;
+        return this.subtotal;
+    }
 }

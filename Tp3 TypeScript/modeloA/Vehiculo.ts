@@ -1,44 +1,79 @@
 import { HojaRuta } from './HojaRuta';
-import { Detalle } from './Detalles';
+
 export class Vehiculo {
     patente: String;
     marca: String;
     modelo: String;
-    hojaRuta: HojaRuta;
-    detalles: Detalle;
+    hojasRutas: HojaRuta[]; //lista de hojas de ruta
+
+    //cosntructor:
+    constructor( patente:String, marca:String, modelo:String){
+        patente = this.patente;
+        marca = this.marca;
+        modelo = this.modelo;
+        
+    }
+
     calcularTotalKilometrosRecorridos(fechaDesde: Date, fechaHasta: Date) {
-     let contadorD = 0;
-        //minutos:
-     let mS = this.detalles.minutoSalida = fechaDesde.getMinutes();
-     let mE =  this.detalles.minutoRegreso = fechaHasta.getMinutes();
-
-      //horas:
-     let hS = this.detalles.horaSalida = fechaDesde.getHours();
-     let hE =this.detalles.horaRegreso = fechaHasta.getHours();
+       let i: number;
+       for(i = 0 ; i <= this.hojasRutas.length ; i ++){
+           if(this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta){ //valida segun el profe jajaj
+               this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
+           }
+       }
 
         
-     
 
         
+      
         
-
-        /*
-function calcularDiasAusencia(fechaIni, fechaFin) {
-  var diaEnMils = 1000 * 60 * 60 * 24,
-      desde = new Date(fechaIni.substr(0, 10)),
-      hasta = new Date(fechaFin.substr(0, 10)),
-      diff = hasta.getTime() - desde.getTime() + diaEnMils;// +1 incluir el dia de ini
-  return diff / diaEnMils;
-  var fecha1 = moment("2016-09-30 07:30:00", "YYYY-MM-DD HH:mm:ss");
-var fecha2 = moment("2016-10-03 07:30:00", "YYYY-MM-DD HH:mm:ss");
-
-var diff = fecha2.diff(fecha1, 'd'); // Diff in days
-console.log(diff);
-
-var diff = fecha2.diff(fecha1, 'h'); // Diff in hours
-console.log(diff);
-}
-    */
-
     }
 }
+
+/**
+ * 
+ *  let mD = fechaDesde.getMinutes();
+        let mH = fechaHasta.getMinutes();
+        let hD = fechaDesde.getHours();
+        let hH = fechaHasta.getHours();
+        let dD = fechaDesde.getDay();
+        let dH = fechaHasta.getDay();
+        let mesD = fechaDesde.getMonth();
+        let mesH = fechaHasta.getMonth();
+        let aD = fechaDesde.getFullYear();
+        let aH = fechaHasta.getFullYear();
+
+        let minutos;
+        let kmTotal; //kilometros recorridos total
+ * if (fechaDesde == fechaHasta) {
+            if (hD == hH) {
+                minutos = mH - mD;
+                kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+            } else { //si las HORAS no son iguales *validacion de minutos*
+                if (mD == mH) { 
+                    minutos = ((hH - hD) * 60 / 1)
+                    kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                    this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+                } else if (mD > mH) {
+                    minutos = ((hH - hD) * 60 / 1) + (mH + mD);
+                    kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                    this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+                } else {
+                    minutos = ((hH - hD) * 60 / 1) + (mH - mD);
+                    kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
+                    this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
+                }
+
+            }
+        }else{  //hacer lo mismo como lo anterior solo q con dias
+            console.log("Si las fechas son distintas se utilizan 2 hojas de Ruta");
+            if(mesD == mesH){//meses iguales
+                if(dD == dH){//dias iguales
+                    minutos = 
+
+                }
+            }
+
+        }
+ */
