@@ -1,5 +1,6 @@
 package com.teameast.tp2.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,12 +17,13 @@ import com.teameast.tp2.service.PaisServiceImpl;
 @RequestMapping(path = "api/v1/pais")
 public class PaisController {
 	
+	@Autowired
 	protected PaisServiceImpl service;
 	
 	@PostMapping("/guardar")
 	public ResponseEntity<?> persistir(@RequestBody Pais pais) {
 		System.out.println(pais.toString());
-		//Pais paisDb = service.save(pais);
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(pais));
+		Pais paisDb = service.save(pais);
+		return ResponseEntity.status(HttpStatus.CREATED).body(paisDb);
 	}
 }
