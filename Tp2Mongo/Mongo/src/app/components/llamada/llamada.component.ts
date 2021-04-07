@@ -33,7 +33,7 @@ export class LlamadaComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.service.llamar(54).subscribe((p) => {
+    this.service.llamar(1).subscribe((p) => {
       this.paises = p;
 
       this.asignar();
