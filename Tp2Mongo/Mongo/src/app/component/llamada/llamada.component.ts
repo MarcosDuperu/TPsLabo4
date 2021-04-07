@@ -26,9 +26,9 @@ export class LlamadaComponent implements OnInit {
   ngOnInit(): void {
     this.service.llamar(54).subscribe((p) => {
       this.paises = p;
-      
+  
       let data: Data = {
-        codigo : this.paises[0].name as number,
+        codigo : this.paises[0].callingCodes[0] as number,
         nombre : this.paises[0].name as String,
         capital: this.paises[0].capital as String,
         region: this.paises[0].region as String,
