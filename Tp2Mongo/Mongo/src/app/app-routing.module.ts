@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LlamadaComponent } from './component/llamada/llamada.component';
+import { LlamadaComponent } from './components/llamada/llamada.component';
 
 const routes: Routes = [{ path: 'llamada', component: LlamadaComponent }];
 

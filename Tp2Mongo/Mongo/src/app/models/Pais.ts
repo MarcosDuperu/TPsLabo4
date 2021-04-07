@@ -1,7 +1,7 @@
 export class Pais {
-  codigo: number;
-  nombre: String;
-  capital: String;
+  codigoPais: number;
+  nombrePais: String;
+  capitalPais: String;
   region: String;
   poblacion: number;
   latitud: number;

@@ -1,17 +1,32 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TransferState } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { Pais } from '../models/Pais';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LlamadaService {
-  constructor(public http: HttpClient) {}
+  private cabeceras: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
+  constructor(private http: HttpClient) {}
 
   public llamar(id: number): Observable<any[]> {
     return this.http.get<any[]>(
       `https://restcountries.eu/rest/v2/callingcode/${id}`
+    );
+  }
+
+  public enviar(pais: Pais): Observable<Pais> {
+    console.log('Enviado' + pais);
+    return this.http.post<Pais>(
+      `http://localhost:9000/api/v1/pais/guardar`,
+      pais,
+      {
+        headers: this.cabeceras,
+      }
     );
   }
 }
