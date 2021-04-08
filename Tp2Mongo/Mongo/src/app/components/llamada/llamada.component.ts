@@ -19,7 +19,7 @@ interface Data {
 export class LlamadaComponent implements OnInit {
   constructor(public service: LlamadaService) {}
 
-  paises: any[];
+  paises: any;
   paisesRegistrdos: Pais[];
   data: undefined;
   public pais: Pais = {
@@ -33,15 +33,21 @@ export class LlamadaComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.service.llamar(1).subscribe((p) => {
-      this.paises = p;
-
-      this.asignar();
-      console.log(this.pais);
-      this.service
-        .enviar(this.pais)
-        .subscribe((pais) => this.paisesRegistrdos.push(pais));
-    });
+    for (let i = 1; i <= 300; i++) {
+      this.service.llamar(i).subscribe((p) => {
+        this.paises = p;
+        if (p.status != 404) {
+          console.log(this.paises);
+          this.asignar();
+          console.log(this.pais);
+          this.service
+            .enviar(this.pais)
+            .subscribe((pais) => this.paisesRegistrdos.push(pais));
+        } else {
+          console.log('Elemento no encontrado');
+        }
+      });
+    }
   }
 
   private asignar(): void {

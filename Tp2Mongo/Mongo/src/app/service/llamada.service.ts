@@ -13,10 +13,15 @@ export class LlamadaService {
 
   constructor(private http: HttpClient) {}
 
-  public llamar(id: number): Observable<any[]> {
-    return this.http.get<any[]>(
+  public llamar(id: number): Observable<any> {
+    var response = this.http.get<any>(
       `https://restcountries.eu/rest/v2/callingcode/${id}`
     );
+    if (response instanceof ErrorEvent) {
+      return null;
+    } else {
+      return response;
+    }
   }
 
   public enviar(pais: Pais): Observable<Pais> {
