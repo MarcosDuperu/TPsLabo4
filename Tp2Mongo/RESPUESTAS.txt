@@ -1,0 +1,7 @@
+5.10) A diferencia de la sentencia LIKE de SQL ,en MongoDB hacemos uso de expresiones regulares para realizar busquedas por patrones.
+	
+	Ejemplo: db.alumnos.find( { correo  : /@/ } ) Buscamos todos los correos que contengan @
+		db.alumnos.find( { correo : /.com$/ } ) Buscamos los correos que terminen con .com
+		db.alumnos.find( { correo : /^123/ } )   Buscamos los correos que comienzen con 123
+
+	
