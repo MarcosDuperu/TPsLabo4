@@ -1,3 +1,33 @@
+5.6) El método ".drop()" ejecutado sobre una colección o Base de datos, Elimina toda la base de datos quedando vacía de elementos.
+
+***************************
+
+5.9) Método skip() para saltar un número determinado de datos, omitir método también acepta un parámetro numérico como el número de registros para saltar. 
+
+A continuación ejemplo de uso en la colección:
+
+>db.Paises.find().limit(NUMBER).skip(NUMBER);
+
+Ejemplo:
+
+> db.paises.find().limit(5)
+{ "_id" : ObjectId("606fd280b20053408b672e8d"), "country_code" : "AD", "country_name" : "Andorra" }
+{ "_id" : ObjectId("606fd280b20053408b672e8e"), "country_code" : "AE", "country_name" : "United Arab Emirates" }
+{ "_id" : ObjectId("606fd280b20053408b672e8f"), "country_code" : "AF", "country_name" : "Afghanistan" }
+{ "_id" : ObjectId("606fd280b20053408b672e90"), "country_code" : "AG", "country_name" : "Antigua and Barbuda" }
+{ "_id" : ObjectId("606fd280b20053408b672e91"), "country_code" : "AI", "country_name" : "Anguilla" }
+
+Con Skip obervamos que "Salta" el correspondiente a: "AE", "country_name" : "United Arab Emirates"
+> db.paises.find().limit(5).skip(2)
+{ "_id" : ObjectId("606fd280b20053408b672e8f"), "country_code" : "AF", "country_name" : "Afghanistan" }
+{ "_id" : ObjectId("606fd280b20053408b672e90"), "country_code" : "AG", "country_name" : "Antigua and Barbuda" }
+{ "_id" : ObjectId("606fd280b20053408b672e91"), "country_code" : "AI", "country_name" : "Anguilla" }
+{ "_id" : ObjectId("606fd280b20053408b672e92"), "country_code" : "AL", "country_name" : "Albania" }
+{ "_id" : ObjectId("606fd280b20053408b672e93"), "country_code" : "AM", "country_name" : "Armenia" }
+
+
+***************************
+
 5.10) A diferencia de la sentencia LIKE de SQL ,en MongoDB hacemos uso de expresiones regulares para realizar busquedas por patrones.
 	
 	Ejemplo: db.alumnos.find( { correo  : /@/ } ) Buscamos todos los correos que contengan @
