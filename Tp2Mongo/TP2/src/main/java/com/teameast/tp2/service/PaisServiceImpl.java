@@ -3,6 +3,10 @@ package com.teameast.tp2.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +23,9 @@ public class PaisServiceImpl implements PaisService {
 	
 	@Autowired
 	protected PaisMDBRepository paisMDBRepository;
+	
+	@Autowired
+	protected MongoTemplate mongoTemplate;
 	
 	@Override
 	@Transactional( readOnly = true)
@@ -59,6 +66,48 @@ public class PaisServiceImpl implements PaisService {
 	public Optional<PaisMDB> findMDB(Integer codigoPais) {
 		return paisMDBRepository.findById(codigoPais);
 	}
-	
 
+	@Override
+	public Iterable<PaisMDB> findByRegion(String region) {
+		return paisMDBRepository.findByRegion(region);
+	}
+
+	@Override
+	public Iterable<PaisMDB> findByAmericaPob() {
+		Query query = new Query();
+		query.addCriteria(Criteria
+				.where("region").is("Americas")
+				.andOperator(Criteria.where("poblacion").gt(100000000)));
+		Iterable<PaisMDB> americas = mongoTemplate.find(query, PaisMDB.class);
+		return americas;
+	}
+
+	@Override
+	public Iterable<PaisMDB> findByNeAfrica() {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("region").ne("Africa"));
+		Iterable<PaisMDB> africa = mongoTemplate.find(query, PaisMDB.class);
+		return africa;
+	}
+	
+	@Override
+	public PaisMDB updateEgypt(){
+		Update update = new Update();
+		update.set("nombrePais", "Egipto");
+		update.set("poblacion", 95000000);
+		
+		Query query = new Query(Criteria.where("nombrePais").is("Egypt"));
+		mongoTemplate.upsert(query, update, PaisMDB.class);
+		
+		Query query1 = new Query(Criteria.where("nombrePais").is("Egipto"));
+		PaisMDB egipto = mongoTemplate.findOne(query1, PaisMDB.class);
+		return egipto;
+	}
+
+	@Override
+	public void deleteByCodigoPais(Integer id) {
+		// TODO Auto-generated method stub
+		
+	} 
+	
 }

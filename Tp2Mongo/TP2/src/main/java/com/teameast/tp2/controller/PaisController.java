@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,8 @@ public class PaisController {
 		return ResponseEntity.ok(o.get());
 	}
 	
+	//Consultas Mongo
+	
 	@PostMapping("/guardarmdb")
 	public ResponseEntity<?> persistirMDB(@RequestBody PaisMDB paisMDB) {
 		PaisMDB paisMDBdb= service.saveMDB(paisMDB);
@@ -54,5 +57,28 @@ public class PaisController {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(o.get());
+	}
+	
+	@GetMapping("/buscarmdb/region/{region}")
+	public ResponseEntity<?> buscarPorRegion(@PathVariable String region) {
+		Iterable<PaisMDB> paises = service.findByRegion(region);
+		return ResponseEntity.ok(paises);
+	}
+	
+	@GetMapping("/buscarMDB/americaspob")
+	public ResponseEntity<?> buscarAmericaPob() {
+		Iterable<PaisMDB> paises = service.findByAmericaPob();
+		return ResponseEntity.ok(paises);
+	}
+	
+	@GetMapping("/buscarMDB/africane")
+	public ResponseEntity<?> buscarNoAfrica() {
+		Iterable<PaisMDB> paises = service.findByNeAfrica();
+		return ResponseEntity.ok(paises);
+	}
+	
+	@PutMapping("/updatemdb/egypt")
+	public ResponseEntity<?> actualizarEgipto() {
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.updateEgypt());
 	}
 }

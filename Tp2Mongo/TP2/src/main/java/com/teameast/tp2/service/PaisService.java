@@ -20,4 +20,14 @@ public Iterable<Pais> findAll();
 	public PaisMDB saveMDB(PaisMDB paisMDB);
 	
 	public Optional<PaisMDB> findMDB(Integer codigoPais);
+	
+	public Iterable<PaisMDB> findByRegion(String region);
+	
+	public Iterable<PaisMDB> findByAmericaPob();
+	
+	public Iterable<PaisMDB> findByNeAfrica();
+	
+	public PaisMDB updateEgypt();
+	
+	public void deleteByCodigoPais(Integer id);
 }
