@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,5 +81,28 @@ public class PaisController {
 	@PutMapping("/updatemdb/egypt")
 	public ResponseEntity<?> actualizarEgipto() {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.updateEgypt());
+	}
+	
+	@DeleteMapping("/deletepais")
+	public ResponseEntity<?> eliminarUnPais() {
+		service.deleteOne();
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/buscarmdb/poblacion")
+	public ResponseEntity<?> buscarRangoPoblacion() {
+		Iterable<PaisMDB> paises = service.findByPoblacion();
+		return ResponseEntity.ok(paises);
+	}
+	
+	@GetMapping("/buscarmdb/ordenasc")
+	public ResponseEntity<?> ordenAsc() {
+		return ResponseEntity.ok(service.findByAsc());
+	}
+	
+	@GetMapping("/buscarmdb/skip/{num}")
+	public ResponseEntity<?> aplicarSkip(@PathVariable Integer num) {
+		Iterable<PaisMDB> paises = service.findSkip(num);
+		return ResponseEntity.ok(paises);
 	}
 }

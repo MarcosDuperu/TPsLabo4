@@ -1,8 +1,10 @@
 package com.teameast.tp2.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -105,9 +107,32 @@ public class PaisServiceImpl implements PaisService {
 	}
 
 	@Override
-	public void deleteByCodigoPais(Integer id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteOne() {
+		Query query = new Query(Criteria.where("codigoPais").is(258));
+		mongoTemplate.remove(query, PaisMDB.class);
+	}
+
+	@Override
+	public Iterable<PaisMDB> findByPoblacion() {
+		Query query = new Query(Criteria.where("poblacion").lt(150000000).gt(50000000));
+		Iterable<PaisMDB> poblacion = mongoTemplate.find(query, PaisMDB.class);
+		return poblacion;
 	} 
 	
+	@Override
+	public List<PaisMDB> findByAsc() {
+		List<PaisMDB> paisMDB = paisMDBRepository.findAll(
+				Sort.by(Sort.Direction.ASC,"nombrePais"));
+		return paisMDB;
+	}
+	
+	@Override
+	public Iterable<PaisMDB> findSkip(Integer num) {
+		Query query = new Query();
+		query.skip(num);
+		Iterable<PaisMDB> paises = mongoTemplate.find(query, PaisMDB.class);
+		return paises;
+	}
+	
 }
+

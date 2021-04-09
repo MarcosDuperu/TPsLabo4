@@ -1,5 +1,6 @@
 package com.teameast.tp2.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.teameast.tp2.entity.Pais;
@@ -7,7 +8,7 @@ import com.teameast.tp2.entity.PaisMDB;
 
 public interface PaisService {
 
-public Iterable<Pais> findAll();
+	public Iterable<Pais> findAll();
 	
 	public Optional<Pais> findById(Integer id);
 	
@@ -29,5 +30,11 @@ public Iterable<Pais> findAll();
 	
 	public PaisMDB updateEgypt();
 	
-	public void deleteByCodigoPais(Integer id);
+	public void deleteOne();
+	
+	public Iterable<PaisMDB> findByPoblacion();
+	
+	public List<PaisMDB> findByAsc();
+	
+	public Iterable<PaisMDB> findSkip(Integer num);
 }
