@@ -4,4 +4,6 @@
 		db.alumnos.find( { correo : /.com$/ } ) Buscamos los correos que terminen con .com
 		db.alumnos.find( { correo : /^123/ } )   Buscamos los correos que comienzen con 123
 
+5.12) Para poder realizar un backup en MongoDB es necesario desde la consola una vez iniciado mongo ,introducir el siguiente el comando mongodump --db países_db.
+
 	
