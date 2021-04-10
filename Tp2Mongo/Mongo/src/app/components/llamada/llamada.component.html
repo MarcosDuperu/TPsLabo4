@@ -1,22 +1,60 @@
-<p *ngFor="let p of paises">{{p.name}}</p>
+<div class="container">
+  <h1>Registro Paises</h1>
 
-<div class="card text-dark bg-light mb-3">
-    <div class="card-header"></div>
-    <div class="card-body">
-      <button class="btn btn-secondary my-2" >volver</button>
-  
+  <h2>Acciones</h2>
+
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+    <button type="button" class="btn btn-primary" (click)="BuscarGuardar()">Buscar y guardar (SQL)</button>
+    <button type="button" class="btn btn-primary" (click)="BuscarGuardarMDB()">Buscar y guardar (MongoDB)</button>
+
+    <div class="container">
+      <button type="button" class="btn btn-primary">Traer 1 SQL</button>
       <form>
         <div class="form-group">
-          <label for="nombre">Nombre campo</label>
-          <!--
-          <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="nombre.variableTS">
-        
-          
+          <label> Codigo pais</label>
+          <input type="number" class="form-control" placeholder="escribe el codigo pais" (NgModel)="codigoBusqueda"
+            name="codigoBusqueda">
         </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" (click)="nombreMetodoTS()">Nombre del boton</button>
-        -->
-        </div>
+        <button type="submit" class="btn btn-primary" (click)="traerUno()">Buscar</button>
       </form>
+      <p>{{paisBuscado}}</p>
     </div>
+
+    <div class="container">
+      <button type="button" class="btn btn-primary">traer 1 MongoDB</button>
+      <form>
+        <div class="form-group">
+          <label> Codigo pais</label>
+          <input type="number" class="form-control" placeholder="escribe el codigo pais" (NgModel)="codigoBusqueda"
+            name="codigoBusqueda">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="traerUnoMDB()">Buscar</button>
+      </form>
+      <p>{{paisBuscadoMDB}}</p>
+    </div>
+    <div class="container">
+      <button type="button" class="btn btn-primary">Paises de America</button>
+      <form>
+        <div class="form-group">
+          <label>Region</label>
+          <input type="text" class="form-control" placeholder="Ingrese region" (ngModel)="region" name="region">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="paisesReg()">Buscar</button>
+      </form>
+      <p>{{PaisesRegion}}</p>
+    </div>
+    <button type="button" class="btn btn-primary">Paises de America</button>
+    <button type="button" class="btn btn-primary">Paises Americas mayor 100millones</button>
+    <button type="button" class="btn btn-primary">Region distinta de Africa $ne</button>
+    <button type="button" class="btn btn-primary">Actualizar Egipto</button>
+    <button type="button" class="btn btn-primary">Eliminar pais cod 258</button>
+    <button type="button" class="btn btn-primary">Que hace un drop()</button>
+    <button type="button" class="btn btn-primary">Poblacion mayor que 50 milones</button>
+    <button type="button" class="btn btn-primary">Ordenar de forma Ascendnete</button>
+    <button type="button" class="btn btn-primary">Metodo skip</button>
+    <button type="button" class="btn btn-primary">Expresiones regulares</button>
+    <button type="button" class="btn btn-primary">Nuevo indice</button>
+    <button type="button" class="btn btn-primary">Como se realiza backuo</button>
   </div>
+</div>
