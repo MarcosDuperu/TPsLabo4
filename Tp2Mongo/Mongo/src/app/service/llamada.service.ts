@@ -67,4 +67,51 @@ Mongo
       `http://localhost:9000/api/v1/pais/buscarmdb/region/${region}`
     );
   }
+
+  public getAmerpb(): Observable<PaisMDB[]> {
+    return this.http.get<PaisMDB[]>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/americaspob`
+    );
+  }
+
+  public getNotAfrican(): Observable<PaisMDB[]> {
+    return this.http.get<PaisMDB[]>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/africane`
+    );
+  }
+
+  public putEgyp(): Observable<PaisMDB> {
+    return this.http.put<PaisMDB>(
+      `http://localhost:9000/api/v1/pais/updatemdb/egypt`,
+      {}
+    );
+  }
+
+  public deletePais(): Observable<PaisMDB> {
+    return this.http.delete<PaisMDB>(
+      `http://localhost:9000/api/v1/pais/deletepais`,
+      {}
+    );
+  }
+
+  public searchPob(): Observable<PaisMDB[]> {
+    return this.http.get<PaisMDB[]>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/poblacion`,
+      {}
+    );
+  }
+
+  public orderAsc(): Observable<PaisMDB[]> {
+    return this.http.get<PaisMDB[]>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/ordenasc`,
+      {}
+    );
+  }
+
+  public searSkip(): Observable<PaisMDB[]> {
+    return this.http.get<PaisMDB[]>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/skip/3`,
+      {}
+    );
+  }
 }

@@ -44,17 +44,17 @@
       </form>
       <p>{{PaisesRegion}}</p>
     </div>
-    <button type="button" class="btn btn-primary">Paises de America</button>
-    <button type="button" class="btn btn-primary">Paises Americas mayor 100millones</button>
-    <button type="button" class="btn btn-primary">Region distinta de Africa $ne</button>
-    <button type="button" class="btn btn-primary">Actualizar Egipto</button>
-    <button type="button" class="btn btn-primary">Eliminar pais cod 258</button>
-    <button type="button" class="btn btn-primary">Que hace un drop()</button>
-    <button type="button" class="btn btn-primary">Poblacion mayor que 50 milones</button>
-    <button type="button" class="btn btn-primary">Ordenar de forma Ascendnete</button>
-    <button type="button" class="btn btn-primary">Metodo skip</button>
-    <button type="button" class="btn btn-primary">Expresiones regulares</button>
+    <button type="button" class="btn btn-primary" (click)="paisesAme()">Paises de America</button>
+    <button type="button" class="btn btn-primary" (click)="paisesMayor()">Paises Americas mayor 100millones</button>
+    <button type="button" class="btn btn-primary" (click)="paisesDistAfr()">Region distinta de Africa $ne</button>
+    <button type="button" class="btn btn-primary" (click)="updateEgipto()">Actualizar Egipto</button>
+    <button type="button" class="btn btn-primary" (click)="deletePais()">Eliminar pais cod 258</button>
+    <!-- <button type="button" class="btn btn-primary">Que hace un drop()</button> -->
+    <button type="button" class="btn btn-primary" (click)="poblMayor()">Poblacion mayor que 50 milones</button>
+    <button type="button" class="btn btn-primary" (click)="ordenAsc()">Ordenar de forma Ascendnete</button>
+    <button type="button" class="btn btn-primary" (click)="skip()">Metodo skip</button>
+    <!-- <button type="button" class="btn btn-primary">Expresiones regulares</button>
     <button type="button" class="btn btn-primary">Nuevo indice</button>
-    <button type="button" class="btn btn-primary">Como se realiza backuo</button>
+    <button type="button" class="btn btn-primary">Como se realiza backuo</button> -->
   </div>
 </div>

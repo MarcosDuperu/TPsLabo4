@@ -146,6 +146,34 @@ export class LlamadaComponent implements OnInit {
   }
 
   public paisesReg() {
-    this.service.getByRegion;
+    this.service.getByRegion(this.region).subscribe((p) => console.log(p));
+  }
+
+  public paisesMayor() {
+    this.service.getAmerpb().subscribe((p) => console.log(p));
+  }
+
+  public paisesDistAfr() {
+    this.service.getNotAfrican().subscribe((p) => console.log(p));
+  }
+
+  public updateEgipto() {
+    this.service.putEgyp().subscribe((p) => console.log(p));
+  }
+
+  public deletePais() {
+    this.service.deletePais().subscribe();
+  }
+
+  public poblMayor() {
+    this.service.searchPob().subscribe((p) => console.log(p));
+  }
+
+  public ordenAsc() {
+    this.service.orderAsc().subscribe((p) => console.log(p));
+  }
+
+  public skip() {
+    this.service.searSkip().subscribe((p) => console.log(p));
   }
 }
