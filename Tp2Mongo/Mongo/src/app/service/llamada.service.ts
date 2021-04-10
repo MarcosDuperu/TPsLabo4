@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pais } from '../models/Pais';
+import { PaisMDB } from '../models/PaisMDB';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,38 @@ export class LlamadaService {
       {
         headers: this.cabeceras,
       }
+    );
+  }
+
+  public getById(id: number): Observable<Pais> {
+    return this.http.get<Pais>(
+      `http://localhost:9000/api/v1/pais/buscar/codigo/${id}`
+    );
+  }
+  /*
+Mongo
+
+ */
+  public enviarMDB(pais: Pais): Observable<PaisMDB> {
+    console.log('Enviado' + pais);
+    return this.http.post<PaisMDB>(
+      `http://localhost:9000/api/v1/pais/guardarmdb`,
+      pais,
+      {
+        headers: this.cabeceras,
+      }
+    );
+  }
+
+  public getByIdMDB(id: number): Observable<PaisMDB> {
+    return this.http.get<PaisMDB>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/codigo${id}`
+    );
+  }
+
+  public getByRegion(region: string): Observable<PaisMDB[]> {
+    return this.http.get<PaisMDB[]>(
+      `http://localhost:9000/api/v1/pais/buscarmdb/region/${region}`
     );
   }
 }
