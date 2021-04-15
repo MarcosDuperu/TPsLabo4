@@ -1,5 +1,5 @@
 import { HojaRuta } from './HojaRuta';
-export class Detalle{
+export class Detalle {
     kmSalida: number;
     kmRegreso: number;
     horaSalida: number;

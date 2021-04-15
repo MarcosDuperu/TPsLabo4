@@ -1,6 +1,6 @@
 import { Vehiculo } from './Vehiculo';
 import { Detalle } from './Detalles';
-export class HojaRuta {
+export class HojaRuta{
     fecha: Date;
     numero: number;
     vehiculo: Vehiculo;
