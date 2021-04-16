@@ -31,10 +31,7 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            
-            "scripts": [
-    
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -130,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "tp1-lab4"
+  "defaultProject": "tp1-lab4",
+  "cli": {
+    "analytics": "660742d6-09b5-412f-b029-d4a5b9dee1e1"
+  }
 }
