@@ -39,27 +39,27 @@ export class TestB{
 
     asignoValores(){
 
-        let detalleFactura1_1 = new DetalleFactura();
+        let detalleFactura1_1 : DetalleFactura = new DetalleFactura();
         detalleFactura1_1.cantidad = 3;
         detalleFactura1_1.subtotal = 350;
 
-        let detalleFactura1_2 = new DetalleFactura();
+        let detalleFactura1_2 : DetalleFactura = new DetalleFactura();
         detalleFactura1_2.cantidad = 2;
         detalleFactura1_2.subtotal = 175;
         
-        let detalleFactura2_1 = new DetalleFactura();
+        let detalleFactura2_1 : DetalleFactura = new DetalleFactura();
         detalleFactura2_1.cantidad = 1;
         detalleFactura2_1.subtotal = 100;
         
-        let detalleFactura2_2 = new DetalleFactura();
+        let detalleFactura2_2 : DetalleFactura = new DetalleFactura();
         detalleFactura2_2.cantidad = 5;
         detalleFactura2_2.subtotal = 700;
         
-        let detalleFactura3_1 = new DetalleFactura();
+        let detalleFactura3_1 : DetalleFactura = new DetalleFactura();
         detalleFactura3_1.cantidad = 6;
         detalleFactura3_1.subtotal = 850;
         
-        let detalleFactura3_2 = new DetalleFactura();
+        let detalleFactura3_2 : DetalleFactura = new DetalleFactura();
         detalleFactura3_2.cantidad = 10;
         detalleFactura3_2.subtotal = 1500;
 
