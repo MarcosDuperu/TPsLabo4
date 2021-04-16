@@ -1,57 +1,22 @@
-import { HojaRuta } from './HojaRuta';
-export class Detalle{
-    kmSalida: number;
-    kmRegreso: number;
-    horaSalida: number;
-    horaRegreso: number;
-    minutoSalida: number;
-    minutoRegreso: number;
-    HojaRuta: HojaRuta;
+import { HojaRuta } from "./HojaRuta";
 
+export class Detalle {
+  kmSalida: number;
+  kmRegreso: number;
+  horaSalida: number;
+  horaRegreso: number;
+  minutoSalida: number;
+  minutoRegreso: number;
+  hojaRuta: HojaRuta;
 
-    get getKmSalida(){
-        return this.kmSalida;
-    }
+  constructor() {
+    this.kmSalida = 0;
+    this.kmRegreso = 0;
+    this.horaSalida = 0;
+    this.horaRegreso = 0;
+    this.minutoSalida = 0;
+    this.minutoRegreso = 0;
+    this.hojaRuta = new HojaRuta();
+  }
 
-    set setkmSalida(KmSalida: number){
-        KmSalida = this.kmSalida;
-    }
-
-    get getkmRegreso(){
-        return this.kmSalida;
-    }
-
-    set setkmRegreso(kmRegreso: number){
-        kmRegreso = this.kmRegreso;
-    }
-    get getHoraSalida(){
-        return this.horaSalida;
-    }
-
-    set setHoraSalida(horaSalida: number){
-        horaSalida = this.horaSalida;
-    }
-
-    get getHoraRegreso(){
-        return this.horaRegreso;
-    }
-
-    set setHoraRegreso(horaRegreso: number){
-        horaRegreso = this.horaRegreso;
-    }
-
-    get getMinutoSalida(){
-        return this.minutoSalida;
-    }
-
-    set setMinutoSalida(minutoSalida: number){
-        minutoSalida = this.minutoSalida;
-    }
-    get getMinutoRegreso(){
-        return this.minutoRegreso;
-    }
-
-    set setMinutoRegreso(minutoRegreso: number){
-        minutoRegreso = this.minutoRegreso;
-    }
 }

@@ -1,33 +1,24 @@
-import { HojaRuta } from './HojaRuta';
-
-export class Vehiculo {
- 
-    hojasRutas: HojaRuta[]; //lista de hojas de ruta
-   
+"use strict";
+exports.__esModule = true;
+exports.Vehiculo = void 0;
+var Vehiculo = /** @class */ (function () {
     //cosntructor:
-    constructor( patente:String, marca:String, modelo:String){
-    
-        
+    function Vehiculo(patente, marca, modelo) {
     }
-
-   calcularTotalKilometrosRecorridos(fechaDesde: Date, fechaHasta: Date) {
-    let totalKmVehiculo: number = 0;
-    for(let i:number = 0; i < this.hojasRutas.length; i++){
-           if(this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta){ 
-              totalKmVehiculo += this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
-           }
-       }
-
-        
-
-        
-      return totalKmVehiculo;
-        
-    }
-}
-
+    Vehiculo.prototype.calcularTotalKilometrosRecorridos = function (fechaDesde, fechaHasta) {
+        var totalKmVehiculo = 0;
+        for (var i = 0; i < this.hojasRutas.length; i++) {
+            if (this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta) {
+                totalKmVehiculo += this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
+            }
+        }
+        return totalKmVehiculo;
+    };
+    return Vehiculo;
+}());
+exports.Vehiculo = Vehiculo;
 /**
- * 
+ *
  *  let mD = fechaDesde.getMinutes();
         let mH = fechaHasta.getMinutes();
         let hD = fechaDesde.getHours();
@@ -47,7 +38,7 @@ export class Vehiculo {
                 kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
                 this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
             } else { //si las HORAS no son iguales *validacion de minutos*
-                if (mD == mH) { 
+                if (mD == mH) {
                     minutos = ((hH - hD) * 60 / 1)
                     kmTotal = minutos * 100 / 60; //regla de 3 para sacar cuantos km recorrio
                     this.hojaRuta.calcularTotalKilometro();//para sacar bien cuanto se recorrio
@@ -66,10 +57,10 @@ export class Vehiculo {
             console.log("Si las fechas son distintas se utilizan 2 hojas de Ruta");
             if(mesD == mesH){//meses iguales
                 if(dD == dH){//dias iguales
-                    minutos = 
+                    minutos =
 
                 }
             }
 
         }
- */
+ */ 

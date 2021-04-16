@@ -9,7 +9,7 @@ export class DetalleFactura{
     articulo: Articulo;
 
 
-    calcularSubtotal(){//creo q la relacion es alrevez pero el profe quiere esto
+    calcularSubtotal(){ //REVISAR
         this.subtotal = this.articulo.precio;
         return this.subtotal;
     }
