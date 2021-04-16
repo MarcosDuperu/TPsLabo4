@@ -11,17 +11,17 @@ export class Vehiculo {
     }
 
    calcularTotalKilometrosRecorridos(fechaDesde: Date, fechaHasta: Date) {
-       let i: number;
-       for(i = 0 ; i <= this.hojasRutas.length ; i ++){
-           if(this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta){ //
-               this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
+    let totalKmVehiculo: number = 0;
+    for(let i:number = 0; i < this.hojasRutas.length; i++){
+           if(this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta){ 
+              totalKmVehiculo += this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
            }
        }
 
         
 
         
-      
+      return totalKmVehiculo;
         
     }
 }

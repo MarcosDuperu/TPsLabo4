@@ -1,16 +1,22 @@
-export class Vehiculo {
+"use strict";
+exports.__esModule = true;
+exports.Vehiculo = void 0;
+var Vehiculo = /** @class */ (function () {
     //cosntructor:
-    constructor(patente, marca, modelo) {
+    function Vehiculo(patente, marca, modelo) {
     }
-    calcularTotalKilometrosRecorridos(fechaDesde, fechaHasta) {
-        let i;
-        for (i = 0; i <= this.hojasRutas.length; i++) {
-            if (this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta) { //valida segun el profe jajaj
-                this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
+    Vehiculo.prototype.calcularTotalKilometrosRecorridos = function (fechaDesde, fechaHasta) {
+        var totalKmVehiculo = 0;
+        for (var i = 0; i < this.hojasRutas.length; i++) {
+            if (this.hojasRutas[i].fecha >= fechaDesde && this.hojasRutas[i].fecha <= fechaHasta) {
+                totalKmVehiculo += this.hojasRutas[i].calcularTotalKilometro(); //llamada al metodo
             }
         }
-    }
-}
+        return totalKmVehiculo;
+    };
+    return Vehiculo;
+}());
+exports.Vehiculo = Vehiculo;
 /**
  *
  *  let mD = fechaDesde.getMinutes();
