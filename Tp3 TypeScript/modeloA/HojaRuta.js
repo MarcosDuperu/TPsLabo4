@@ -11,8 +11,8 @@ var HojaRuta = /** @class */ (function () {
         var i;
         //trae las todas las tablas de detalle
         for (i = 0; i <= this.detalles.length; i++) {
-            //kmSalida += this.detalles.kmSalida; //agrega y suma los km de salida
-            //kmRegreso += this.detalles[i].getkmRegreso; //agrega y suma los km de regreso
+            kmSalida += this.detalles[i].kmSalida; //agrega y suma los km de salida
+            kmRegreso += this.detalles[i].kmRegreso; //agrega y suma los km de regreso
         }
         if (kmSalida != 0) {
             kmTotal = kmSalida - kmRegreso; //resta los km de salida por los de regreso para tener el total recorrido
