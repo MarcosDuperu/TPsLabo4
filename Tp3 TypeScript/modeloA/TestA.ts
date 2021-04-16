@@ -1,15 +1,7 @@
 import { Vehiculo } from './Vehiculo';
-import { Detalle } from './Detalles';
-import { HojaRuta } from './HojaRuta';
-
 
 //CREO AUTO 1
 let auto1 = new Vehiculo("ABC123","Ford","Ranger");
-
-
-let prueba2 = new Detalle();
-let hojaderuta1 = new HojaRuta();
-
 //ASIGNO 3 HOJAS DE RUTA A 1 AUTO
 auto1.hojasRutas[0]
 auto1.hojasRutas[1];
@@ -17,13 +9,13 @@ auto1.hojasRutas[2];
 
 //ASIGNO VALORES A HOJA DE RUTA
 
-auto1.hojasRutas[0].fecha = new Date ("2021-07-16");
+let fecha1 = auto1.hojasRutas[0].fecha = new Date ("2021-07-16");
 auto1.hojasRutas[0].numero = 120;
 
-auto1.hojasRutas[1].fecha = new Date ("2021-06-25");
+let fecha2 = auto1.hojasRutas[1].fecha = new Date ("2021-06-25");
 auto1.hojasRutas[1].numero = 320;
 
-auto1.hojasRutas[2].fecha = new Date ("2021-08-20");
+let fecha3 = auto1.hojasRutas[2].fecha = new Date ("2021-08-20");
 auto1.hojasRutas[2].numero = 360;
 
 ////ASIGNO A CADA HOJA DE RUTA UN DETALLE 
@@ -40,6 +32,7 @@ auto1.hojasRutas[2].detalles[7];
 auto1.hojasRutas[2].detalles[8];
 
 //ASIGNO VALORES A HOJA DE  RUTA 0
+
 auto1.hojasRutas[0].detalles[0].kmSalida = 200;
 auto1.hojasRutas[0].detalles[0].kmRegreso = 300;
 auto1.hojasRutas[0].detalles[0].horaSalida = 10;
@@ -103,9 +96,9 @@ auto1.hojasRutas[2].detalles[8].horaRegreso=20;
 auto1.hojasRutas[2].detalles[8].minutoSalida=25;
 auto1.hojasRutas[2].detalles[8].minutoRegreso=40;
 
+document.body.innerHTML = String("El total de kilometros recorridos entre un rango de fechas es : "  + auto1.calcularTotalKilometrosRecorridos(fecha1,fecha2));
 
-
-document.body.innerHTML = String(auto1.hojasRutas[2].calcularTotalKilometro());
+document.body.innerHTML = String("El total de kilometros recorridos para la Hoja de Ruta 2 es: " + auto1.hojasRutas[2].calcularTotalKilometro());
 
 
 

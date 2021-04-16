@@ -1,20 +1,23 @@
 "use strict";
 exports.__esModule = true;
+exports.TestA = void 0;
 var Vehiculo_1 = require("./Vehiculo");
-var Detalles_1 = require("./Detalles");
-var HojaRuta_1 = require("./HojaRuta");
+var TestA = /** @class */ (function () {
+    function TestA() {
+    }
+    return TestA;
+}());
+exports.TestA = TestA;
 //CREO AUTO 1
 var auto1 = new Vehiculo_1.Vehiculo("ABC123", "Ford", "Ranger");
-var prueba2 = new Detalles_1.Detalle();
-var hojaderuta1 = new HojaRuta_1.HojaRuta();
 //ASIGNO 3 HOJAS DE RUTA A 1 AUTO
 auto1.hojasRutas[0];
 auto1.hojasRutas[1];
 auto1.hojasRutas[2];
 //ASIGNO VALORES A HOJA DE RUTA
-auto1.hojasRutas[0].fecha = new Date("2021-07-16");
+var fecha1 = auto1.hojasRutas[0].fecha = new Date("2021-07-16");
 auto1.hojasRutas[0].numero = 120;
-auto1.hojasRutas[1].fecha = new Date("2021-06-25");
+var fecha2 = auto1.hojasRutas[1].fecha = new Date("2021-06-25");
 auto1.hojasRutas[1].numero = 320;
 auto1.hojasRutas[2].fecha = new Date("2021-08-20");
 auto1.hojasRutas[2].numero = 360;
@@ -85,4 +88,5 @@ auto1.hojasRutas[2].detalles[8].horaSalida = 15;
 auto1.hojasRutas[2].detalles[8].horaRegreso = 20;
 auto1.hojasRutas[2].detalles[8].minutoSalida = 25;
 auto1.hojasRutas[2].detalles[8].minutoRegreso = 40;
-document.body.innerHTML = String(auto1.hojasRutas[2].calcularTotalKilometro());
+document.body.innerHTML = String("El total de kilometros recorridos entre un rango de fechas son : " + auto1.calcularTotalKilometrosRecorridos(fecha1, fecha2));
+document.body.innerHTML = String("El total de kilometros recorrido para la Hoja de Ruta 2 es: " + auto1.hojasRutas[2].calcularTotalKilometro());
