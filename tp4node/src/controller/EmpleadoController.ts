@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Connection } from "pg";
 import { cxMysql } from "../mysqldb";
 
 export const getEmpleado = (req: Request, res: Response) =>
@@ -92,6 +91,38 @@ export const actualizarEmpleado = (req: Request, res: Response) =>
       } else {
         let sql: string =
           "UPDATE empleado SET apellido=?, nombre=?, dni=?, sector=?, fechaIngreso=?, activo=? WHERE legajo=?";
+        connection.query(sql, values, (err, results) => {
+          if (err) {
+            console.error(err);
+            res.json({ message: "Error al actualizar " + err });
+          } else {
+            res.json({ message: "Empleado actualizado con exito" });
+          }
+        });
       }
+    });
+  });
+
+export const eliminarEmpleado = (req: Request, res: Response) =>
+  new Promise((resolve, reject) => {
+    const legajo = parseInt(req.params.legajo);
+    cxMysql.getConnection((err, connection) => {
+      if (err) {
+        console.error(err);
+        res.send(err);
+        return;
+      }
+      connection.query(
+        "DELETE FROM empleado WHERE legajo = ?",
+        [legajo],
+        (err, results) => {
+          if (err) {
+            console.error(err);
+            res.json({ message: "Error al eliminar" });
+          } else {
+            res.json({ message: "Empleado eliminado con exito" });
+          }
+        }
+      );
     });
   });
