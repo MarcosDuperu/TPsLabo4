@@ -58,7 +58,7 @@ export const cargarEmpleado = (req: Request, res: Response) =>
         return;
       } else {
         let sql: string =
-          "INSERT INTO empleado(legajo, apellido, nombre, dni, sector, fechaIngreso, activo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+          "INSERT INTO empleado(legajo, apellido, nombre, dni, sector, fecha_ingreso, activo) VALUES (?, ?, ?, ?, ?, ?, ?)";
         connection.query(sql, value, (err, results) => {
           if (err) {
             console.error(err);
@@ -90,7 +90,7 @@ export const actualizarEmpleado = (req: Request, res: Response) =>
         res.send(err);
       } else {
         let sql: string =
-          "UPDATE empleado SET apellido=?, nombre=?, dni=?, sector=?, fechaIngreso=?, activo=? WHERE legajo=?";
+          "UPDATE empleado SET apellido=?, nombre=?, dni=?, sector=?, fecha_ingreso=?, activo=? WHERE legajo=?";
         connection.query(sql, values, (err, results) => {
           if (err) {
             console.error(err);
