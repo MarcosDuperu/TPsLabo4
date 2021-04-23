@@ -12,6 +12,3 @@ app.use(rutas_1.default);
 app.listen(3000, () => {
     console.log(`Servidor en puerto 3000`, 3000);
 });
-
-
-

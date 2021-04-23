@@ -6,56 +6,123 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Empleado</title>
+  <script>var exports = {};</script>
   <script src="../dist/index.js"></script>
 </head>
 
 <body>
-    <form id="formulario">
+
+  <form id="formulario">  
     <label for="legajo">Legajo:</label><br/>
     <input type="number" id="legajo"><br/>
     <label for="nombre">Nombre:</label><br/>
     <input type="text" id="Nombre"><br/>
     <label for="apellido">Apellido:</label><br/>
-    <input type="text" id="apellido"><br/>
+    <input type="text" id="Apellido"><br/>
     <label for="dni">DNI:</label><br/>
     <input type="number" id="dni"><br/>
     <label for="sector">Sector</label><br/>
     <input type="text" id="sector"><br/>
     <label for="fechaIngreso">Fecha Ingreso:</label><br/>
-    <input type="date" id="fechaIngreso"><br/>
-    <label>Activo</label>
+    <input type="date" id="fechaIngreso"><br/><br/>
+    <label>Activo:</label><br/>
     <input type="radio" id="activo" value="true" name="Activo">
     <label for="activo">Verdadero</label>
     <input type="radio" id="activo" value="false" name="Activo">
-    <label for="activo">Falso</label>
-    <button type="submit">Guardar Empleado</button>
+    <label for="activo">Falso</label><br/><br/>
+    <button type="submit"id=añadirEmpleado> Añadir Empleado </button><br/><br/>
+    <button type="submit"id=borrarEmpleado> Borrar Empleado </button><br/><br/>
+    <button type="submit"id=editarEmpleado> Editar Empleado </button><br/><br/>
+    <button type="submit" id=mostrarEmpleados>Mostrar Empleados</button>
+
+</table>
+  
   </form>
 
-  <script>
-  mostrarEmpleado();
-    function mostrarEmpleado() {
-    
-        let mostrar = fetch('https://localhost:3000/empleados');
+<script>
 
-    alert(mostrar);
+//MOSTRAR
+let botonMostrar = document.querySelector('#mostrarEmpleados');
+botonMostrar.addEventListener('click',mostrarEmpleados);
+
+
+function mostrarEmpleados(){
+
+  fetch('https://localhost:3000/empleados')
+
+.then(empleados =>{ console.log(empleados)
+  return empleados.json();
+})
+.then(respuesta=> { mostrarHtml(respuesta)})
+
+.catch(error => {console.log(error)});
 
 }
 
-//convertir a objeto y llamarlo.
-mostrarJSON = JSON.parse(mostrar);
-tabla="<table><tr><td>" + nombre + "</td>";
-  tabla+="<td>" + empleado + "</td>";
-  
-document.getElementById("grilla").innerHTML(mostrarJSON);
+function mostrarHtml({legajo, apellido, nombre, dni, sector, fechaIngreso, activo}){
+
+body.innerHTML =  tabla="<table><tr><td>" + legajo + "</td>
+                        tabla+="<td>" + apellido + "</td>"
+                        tabla+="<td>" + nombre + "</td>"
+                        tabla+="<td>" + dni + "</td>"
+                        tabla+="<td>" + sector + "</td>"
+                        tabla+="<td>" + fechaIngreso + "</td>"
+                        tabla+="<td>" + activo + "</td></tr></td>"
+}
+
+//AÑADIR
+let botonAñadir = document.querySelector('#añadirEmpleado');
+botonAñadir.addEventListener('click',añadirEmpleado);
 
 
-mostrarHtml
+function añadirEmpleado(){
+
+  fetch('https://localhost:3000/insert')
+
+.then(añadir =>{ añadir.json();})
+
+.then(respuesta=> { console.log(respuesta)})
+
+.catch(error => {console.log(error)});
+
+}
+
+
+//BORRAR
+let botonBorrar = document.querySelector('#borrarEmpleado');
+botonBorrar.addEventListener('click',borrarEmpleado);
+
+
+function borrarEmpleado(){
+
+  fetch('https://localhost:3000/delete:id')
+
+.then(borrar =>{ borrar.json(); })
+.then(respuesta=> { console.log(respuesta)})
+
+.catch(error => {console.log(error)});
+
+}
+
+//EDITAR
+
+let botonEditar = document.querySelector('#editarEmpleado');
+botonBorrar.addEventListener('click',editarEmpleado);
+
+
+function editarEmpleado(){
+
+  fetch('https://localhost:3000/update')
+
+.then(editar =>{ editar.json(); })
+.then(respuesta=> { console.log(respuesta)})
+
+.catch(error => {console.log(error)});
+
+}
+
 </script>
 </body>
 
-<div id="grilla">
-
-
-</div>
 
 </html>
