@@ -12,3 +12,7 @@ app.use(rutas_1.default);
 app.listen(3000, () => {
     console.log(`Servidor en puerto 3000`, 3000);
 });
+const path = require("path");
+app.get("/", function (req, res) {
+    res.sendFile(path.resolve(__dirname, "index.html"));
+});
