@@ -4,7 +4,7 @@ export class Empleado {
   nombre: string;
   dni: number;
   sector: string;
-  fechaIngreso: Date;
+  fechaIngreso: Date; //CREAR UNA FUNCION QUE ME FORMATEE EL DATE
   activo: boolean;
 
   constructor(
