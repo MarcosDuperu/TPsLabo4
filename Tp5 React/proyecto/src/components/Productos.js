@@ -31,7 +31,7 @@ class Productos extends Component {
       <React.Fragment>
         <Navigation></Navigation>
         <Container>
-          <Row>{instrumentos}</Row>
+          <list>{instrumentos}</list>
         </Container>
       </React.Fragment>
     );

@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <React.Fragment>
         <Navigation></Navigation>
-        <Container fluid="md">
+        <Container fluid="md"  style={{ margin: "5rem", marginLeft:"10%" }}>
           <Row>
             <h2>
             Musical Hendrix es una tienda de instrumentos musicales con ya más
