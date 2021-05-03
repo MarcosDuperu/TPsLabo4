@@ -4,7 +4,7 @@ export const cxMysql = createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "empleado",
+  database: "dbempleado",
 
   connectionLimit: 100,
 });

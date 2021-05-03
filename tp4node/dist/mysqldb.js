@@ -6,6 +6,7 @@ exports.cxMysql = mysql_1.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: "empleado",
+    database: "dbempleado",
     connectionLimit: 100,
 });
+//# sourceMappingURL=mysqldb.js.map

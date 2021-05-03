@@ -9,3 +9,4 @@ router.post("/insert", EmpleadoController_1.cargarEmpleado);
 router.put("/update", EmpleadoController_1.actualizarEmpleado);
 router.delete("/delete/:id", EmpleadoController_1.eliminarEmpleado);
 exports.default = router;
+//# sourceMappingURL=rutas.js.map

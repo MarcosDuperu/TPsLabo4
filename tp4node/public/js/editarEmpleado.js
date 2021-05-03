@@ -1,8 +1,7 @@
 import { obtenerEmpleado, editarEmpleado } from './API.js';
-import { mostrarAlerta, validar } from './funciones.js';
+import { mostrarAlerta, validar, formatDate } from './funciones.js';
 
 (function() {
-
     // Campos del formulario
     const legajoInput = document.querySelector('#legajo');
     const apellidoInput = document.querySelector('#apellido');
@@ -27,14 +26,15 @@ import { mostrarAlerta, validar } from './funciones.js';
     });
 
     function mostrarEmpleado(empleado) {
-        const { legajo, apellido, nombre, dni, sector, fechaIngreso, activo } = empleado;
+        
+        const { legajo, apellido, nombre, dni, sector, fecha_ingreso, activo } = empleado;
 
         legajoInput.value = legajo;
         apellidoInput.value = apellido;
         nombreInput.value = nombre;
         dniInput.value = dni;
         sectorInput.value = sector;
-        fechaIngresoInput.value = fechaIngreso;
+        fechaIngresoInput.value = formatDate(fecha_ingreso);
         activoInput.value = activo;
     }
 

@@ -22,6 +22,7 @@ export const obtenerEmpleados = async () => {
     try {
         const resultado = await fetch(url);
         const empleados = await resultado.json();
+        console.log(empleados)
         return empleados;
     } catch (error) {
         console.log(error);
@@ -29,7 +30,7 @@ export const obtenerEmpleados = async () => {
 }
 
 
-export const eliminarEmpleados = async id => {
+export const eliminarEmpleado = async id => {
     try {
         await fetch(`${url}/${id}`, {
             method: 'DELETE'
@@ -53,7 +54,7 @@ export const obtenerEmpleado = async id => {
 
 export const editarEmpleado = async empleado => {
     try {
-        await fetch(`${url}/${empleado.id}`, {
+        await fetch(`${url}/${empleado}`, {
             method: 'PUT',
             body: JSON.stringify(empleado),
             headers: {

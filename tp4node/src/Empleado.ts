@@ -4,7 +4,7 @@ export class Empleado {
   nombre: string;
   dni: number;
   sector: string;
-  fechaIngreso: Date; //CREAR UNA FUNCION QUE ME FORMATEE EL DATE
+  fecha_ingreso: Date; //CREAR UNA FUNCION QUE ME FORMATEE EL DATE
   activo: boolean;
 
   constructor(
@@ -13,7 +13,7 @@ export class Empleado {
     nombre: string,
     dni: number,
     sector: string,
-    fechaIngreso: Date,
+    fecha_ingreso: Date,
     activo: boolean
   ) {}
 }

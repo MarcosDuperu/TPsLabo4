@@ -28,8 +28,9 @@ import { nuevoEmpleado } from './API.js';
         }
 
         
-
+        
         if( validar(empleado)) {
+            
             // Mostrar mensaje
             mostrarAlerta('Todos los campos son obligatorios');
             return;

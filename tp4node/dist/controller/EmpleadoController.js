@@ -7,13 +7,13 @@ const getEmpleado = (req, res) => new Promise((resolve, reject) => {
         if (err) {
             console.error(err);
             alert("Error al buscar los empleados");
-            return;
+            return reject(err);
         }
         console.log("Conexion con MySQL: ", connection.threadId);
         connection.query("SELECT * FROM empleado limit 10", (err, results) => {
             if (err)
                 console.error(err);
-            res.send(results);
+            return resolve(res.send(results));
         });
     });
 });
@@ -23,37 +23,35 @@ const getEmpleadoById = (req, res) => new Promise((resolve, reject) => {
     mysqldb_1.cxMysql.getConnection((err, connection) => {
         if (err) {
             console.error(err);
-            res.send(err);
             alert("Error no se encontro el empleado");
-            return;
+            return reject(res.send(err));
         }
         connection.query("SELECT * FROM empleado WHERE legajo = ?", [idEmp], (err, results) => {
             if (err)
                 console.error(err);
-            results.send(results);
+            return resolve(res.send(results[0]));
         });
     });
 });
 exports.getEmpleadoById = getEmpleadoById;
 const cargarEmpleado = (req, res) => new Promise((resolve, reject) => {
-    const { legajo, apellido, nombre, dni, sector, fechaIngreso, activo, } = req.body;
-    var value = [legajo, apellido, nombre, dni, sector, fechaIngreso, activo];
+    const { legajo, apellido, nombre, dni, sector, fecha_ingreso, activo, } = req.body;
+    var value = [legajo, apellido, nombre, dni, sector, fecha_ingreso, activo];
     mysqldb_1.cxMysql.getConnection((err, connection) => {
         if (err) {
             console.error(err);
             alert("Error al cargar Empleado");
-            res.send(err);
-            return;
+            return reject(res.send(err));
         }
         else {
             let sql = "INSERT INTO empleado(legajo, apellido, nombre, dni, sector, fecha_ingreso, activo) VALUES (?, ?, ?, ?, ?, ?, ?)";
             connection.query(sql, value, (err, results) => {
                 if (err) {
                     console.error(err);
-                    res.json({ message: "Error al tratar de cargar" });
+                    return reject(res.json({ message: "Error al tratar de cargar" }));
                 }
                 else {
-                    res.json({ message: "Empleado gargado con exito" });
+                    return resolve(res.json({ message: "Empleado gargado con exito" }));
                 }
             });
         }
@@ -61,23 +59,23 @@ const cargarEmpleado = (req, res) => new Promise((resolve, reject) => {
 });
 exports.cargarEmpleado = cargarEmpleado;
 const actualizarEmpleado = (req, res) => new Promise((resolve, reject) => {
-    const { legajo, apellido, nombre, dni, sector, fechaIngreso, activo, } = req.body;
-    var values = [legajo, apellido, nombre, dni, sector, fechaIngreso, activo];
+    const { legajo, apellido, nombre, dni, sector, fecha_ingreso, activo, } = req.body;
+    var values = [legajo, apellido, nombre, dni, sector, fecha_ingreso, activo];
     mysqldb_1.cxMysql.getConnection((err, connection) => {
         if (err) {
             console.error(err);
             alert("Error al conectarse con BD");
-            res.send(err);
+            return reject(res.send(err));
         }
         else {
             let sql = "UPDATE empleado SET apellido=?, nombre=?, dni=?, sector=?, fecha_ingreso=?, activo=? WHERE legajo=?";
-            connection.query(sql, values, (err, results) => {
+            connection.query(sql, values, (err) => {
                 if (err) {
                     console.error(err);
-                    res.json({ message: "Error al actualizar " + err });
+                    return reject(res.json({ message: "Error al actualizar " + err }));
                 }
                 else {
-                    res.json({ message: "Empleado actualizado con exito" });
+                    return resolve(res.json({ message: "Empleado actualizado con exito" }));
                 }
             });
         }
@@ -92,15 +90,16 @@ const eliminarEmpleado = (req, res) => new Promise((resolve, reject) => {
             res.send(err);
             return;
         }
-        connection.query("DELETE FROM empleado WHERE legajo = ?", [legajo], (err, results) => {
+        connection.query("DELETE FROM empleado WHERE legajo = ?", [legajo], (err) => {
             if (err) {
                 console.error(err);
-                res.json({ message: "Error al eliminar" });
+                return reject(res.json({ message: "Error al eliminar" }));
             }
             else {
-                res.json({ message: "Empleado eliminado con exito" });
+                return resolve(res.json({ message: "Empleado eliminado con exito" }));
             }
         });
     });
 });
 exports.eliminarEmpleado = eliminarEmpleado;
+//# sourceMappingURL=EmpleadoController.js.map
