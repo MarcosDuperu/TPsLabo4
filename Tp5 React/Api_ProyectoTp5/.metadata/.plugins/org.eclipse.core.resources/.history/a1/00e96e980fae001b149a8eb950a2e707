@@ -1,0 +1,9 @@
+package com.proyecto.react.repository;
+import org.springframework.data.repository.CrudRepository;
+
+import com.proyecto.react.entity.Instrumento;
+
+
+public class InstrumentoRepository  extends CrudRepository<Instrumento, Long>{
+
+}

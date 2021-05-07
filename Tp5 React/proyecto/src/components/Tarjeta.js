@@ -29,9 +29,9 @@ class Tarjeta extends Component {
               <b> $ {this.props.precio}</b>
             </Card.Text>
             <Card.Text>
-              {this.props.costoEnvio == "G" ? (
+              {this.props.costoEnvio === "G" ? (
                 <p style={{ color: "green" }}>
-                  <img src={require("../assets/img/camion.png").default}></img>{""}
+                  <img src={require("../assets/img/camion.png").default}></img>
                   Envio Gratis
                 </p>
               ) : (

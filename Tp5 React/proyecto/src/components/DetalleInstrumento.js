@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { instrumentos } from "../data/instrumentos.json";
 import Button from "react-bootstrap/Button";
-import Tarjeta from "./Tarjeta";
 
 class DetalleInstrumento extends Component {
   constructor() {
@@ -72,7 +71,7 @@ class DetalleInstrumento extends Component {
                 <Col><br></br>
                   Costo Envio:
                   <h5> <br></br>
-                    {InstrumentoEncontrado[0].costoEnvio == "G" ? (
+                    {InstrumentoEncontrado[0].costoEnvio === "G" ? (
                       <p style={{ color: "green" }}>
                         <img
                           className="minAltoImg"

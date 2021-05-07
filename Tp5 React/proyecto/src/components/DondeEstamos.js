@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Container from 'react-bootstrap/Container';
 import Navigation from './Navigation';
 import  GoogleMaps from 'simple-react-google-maps';
 
@@ -10,7 +9,7 @@ class DondeEstamos extends Component {
     return (
       <React.Fragment>
         <Navigation></Navigation>
-        <div className="container" style={{ margin: "5rem", marginLeft:"10%" }}>
+        <div className="container" style={{ margin: "2rem", marginLeft:"12%" }}>
         <GoogleMaps
           apiKey={"AIzaSyBHnH23oXzl37egmraORKVimYtaODhWhBw"}
           style={{ height: "450px", width: "1000px" }}

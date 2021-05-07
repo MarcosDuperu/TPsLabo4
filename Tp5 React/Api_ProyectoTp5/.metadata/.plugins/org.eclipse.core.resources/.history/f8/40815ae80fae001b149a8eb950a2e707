@@ -1,0 +1,5 @@
+package com.proyecto.react.service;
+
+public class InstrumentoServiceImpl {
+
+}

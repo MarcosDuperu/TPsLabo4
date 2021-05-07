@@ -15,6 +15,7 @@ class Nadvar extends Component {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/dondeEstamos">Donde Estamos</Nav.Link>
             <Nav.Link href="/productos">Productos</Nav.Link>
+            <Nav.Link href="/listarInstrumentos">Listar Instrumentos</Nav.Link>
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
