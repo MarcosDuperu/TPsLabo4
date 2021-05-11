@@ -17,7 +17,7 @@ export class InstrumentoService extends Component {
 //eliminar
   delete(id) {
     return axios
-      .get(this.BASEURL + "eliminar-instrumento/" + id)
-      .then((res) => res.data);
+      .get(this.BASEURL + id)
+      .then(res => res.data);
   }
 }

@@ -57,7 +57,7 @@ public class InstrumentoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(instrumentoDB);
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/eliminar-instrumento/{id}")
 	public ResponseEntity<?> eliminarInstrumento(@PathVariable Long id) {
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();

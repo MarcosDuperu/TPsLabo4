@@ -70,7 +70,7 @@ class ListarInstrumentos extends Component {
         <Button
           label="Guardar"
           className="p-button p-component p-button-success p-button-text"
-          onClick={this.save()}
+          onClick={this.save}
         />
       </div>
     );
@@ -95,6 +95,7 @@ class ListarInstrumentos extends Component {
         }//hay que ver si se puede implementar un metodo q tenga esto para no repetir tanto codigo!!
       });
       //toast.current.show({ severity: 'success', summary: 'Atención', detail: 'Se guardo el registro correctamente' });
+      alert("Se guardo el registro correctamente");
       this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
     });
   }
@@ -103,7 +104,8 @@ class ListarInstrumentos extends Component {
     if (window.confirm("¿Realmente desea eliminar el Registro?")) {
       this.instrumentoService.delete(this.state.selectedInstrumento.id).then(data => {
        // toast.current.show({ severity: 'success', summary: 'Atención', detail: 'Se eliminó el registro correctamente' });
-        this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
+      alert("Se eliminó el registro correctamente");
+       this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}));
       });
     }
   }
@@ -138,7 +140,7 @@ class ListarInstrumentos extends Component {
         imagen: null
       }
     })
-    document.getElementById('inst-form').reset();//obtenemos el formulario y reseteamos el formulario 
+  //  document.getElementById('instrumentoF').reset();//obtenemos el formulario y reseteamos el formulario 
   }
 
   render() {
@@ -149,14 +151,14 @@ class ListarInstrumentos extends Component {
           <Menubar model={this.items} />
           <br/>
           <Panel header="Lista de Instrumentos">
-            <DataTable value={this.state.instrumentos} paginator={true} rows="2" selectionMode="single" selection={this.state.selectedInstrumento} onSelectionChange={e => this.setState({ selectedInstrumento: e.value })}>
-              <Column field="instrumento" header="Instrumento"></Column>
+            <DataTable value={this.state.instrumentos} paginator={true} rows="4" selectionMode="single" selection={this.state.selectedInstrumento} onSelectionChange={e => this.setState({ selectedInstrumento: e.value })}>
               <Column field="id" header="ID"></Column>
+              <Column field="instrumento" header="Instrumento"></Column>
+              <Column field="imagen" header="Imagen"></Column>
               <Column field="precio" header="Precio"></Column>
               <Column field="costoEnvio" header="CostoEnvio"></Column>
               <Column field="cantidadVendida" header="CantidadVendida"></Column>
               <Column field="descripcion" header="Descripcion"></Column>
-              <Column field="imagen" header="Imagen"></Column>
             </DataTable>
           </Panel>
 
@@ -167,7 +169,7 @@ class ListarInstrumentos extends Component {
             footer={this.footer}
             modal={true}
             onHide={() => this.setState({ visible: false })}>
-            <form id="inst-form">
+            <form id="instrumentoF">
               <span className="p-float-label">
                 <InputText
                   value={this.state.instrumento.instrumento}
@@ -175,7 +177,7 @@ class ListarInstrumentos extends Component {
                   id="instrumento"
                   onChange={(e) => {
                     let valor = e.target.value;
-                    this.setState((prevState) => {
+                    this.setState(prevState => {
                       let instrumento = Object.assign({}, prevState.instrumento);
                       instrumento.instrumento = valor;
                       return { instrumento };
@@ -265,11 +267,12 @@ class ListarInstrumentos extends Component {
               </span>
             </form>
           </Dialog>
-        <Toast ref={toast} />
+        
         </div>
       </React.Fragment>
     );
   }
 }
 
+//<Toast ref={toast} />
 export default ListarInstrumentos;
