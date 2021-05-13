@@ -38,7 +38,7 @@ class DetalleInstrumento extends Component {
               </div>
               <br></br>
               <tr></tr>
-              Descripcion: <tr></tr> <br></br>
+              Descripcion: <tr/> <br></br>
               <p>{InstrumentoEncontrado[0].descripcion}</p>
             </Col>
             <Col>

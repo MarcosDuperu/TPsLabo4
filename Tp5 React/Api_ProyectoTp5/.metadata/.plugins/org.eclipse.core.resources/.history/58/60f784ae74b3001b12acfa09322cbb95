@@ -24,15 +24,12 @@ public class Instrumento {
 
 	@Column(name = "modelo")
 	private String modelo;
-	
-	@Column(name = "marca")
-	private String marca;
 
 	@Column(name = "precio")
 	private double precio;
 
 	@Column(name = "costoEnvio")
-	private double costoEnvio;
+	private String costoEnvio;
 
 	@Column(name = "canidadVendida")
 	private int cantidadVendida;

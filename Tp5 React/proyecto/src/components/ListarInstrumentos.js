@@ -19,7 +19,6 @@ import "primeicons/primeicons.css";
 //footer
 import { Button } from "primereact/button";
 //mensaje de guardado exitoso
-import { Toast, toast } from "primereact/toast";
 class ListarInstrumentos extends Component {
   constructor() {
     super();
@@ -31,9 +30,12 @@ class ListarInstrumentos extends Component {
         precio: null,
         costoEnvio: null,
         cantidadVendida: null,
+        marca: null,
+        modelo: null,
+        descripcion: null,
         imagen: null
       },
-      //para seleccionar personas en la lista para poder editarla o eliminarla 
+      //para seleccionar instrumentos en la lista para poder editarla o eliminarla 
       selectedInstrumento: {
 
       }
@@ -43,7 +45,7 @@ class ListarInstrumentos extends Component {
         label: "Nuevo",
         icon: "pi pi-fw pi-plus",
         command: () => {
-          this.showSaveDialog();
+          this.showSaveDialog(); //
         },
       },
       {
@@ -91,6 +93,9 @@ class ListarInstrumentos extends Component {
           precio: null,
           costoEnvio: null,
           cantidadVendida: null,
+          marca: null,
+          modelo: null,
+          descripcion: null,
           imagen: null
         }//hay que ver si se puede implementar un metodo q tenga esto para no repetir tanto codigo!!
       });
@@ -121,11 +126,13 @@ class ListarInstrumentos extends Component {
         precio: this.state.selectedInstrumento.precio,
         costoEnvio: this.state.selectedInstrumento.costoEnvio,
         cantidadVendida: this.state.selectedInstrumento.cantidadVendida,
+        marca: this.state.selectedInstrumento.marca,
+        modelo: this.state.selectedInstrumento.modelo,
+        descripcion: this.state.selectedInstrumento.descripcion,
         imagen: this.state.selectedInstrumento.imagen
       }
     })
   }
-
   //metodo para mostrar el dialog (ventana emergente donde se guarda persona)
   showSaveDialog() {
     this.setState({
@@ -137,6 +144,9 @@ class ListarInstrumentos extends Component {
         precio: null,
         costoEnvio: null,
         cantidadVendida: null,
+        marca: null,
+        modelo: null,
+        descripcion: null,
         imagen: null
       }
     })
@@ -152,12 +162,14 @@ class ListarInstrumentos extends Component {
           <br/>
           <Panel header="Lista de Instrumentos">
             <DataTable value={this.state.instrumentos} paginator={true} rows="4" selectionMode="single" selection={this.state.selectedInstrumento} onSelectionChange={e => this.setState({ selectedInstrumento: e.value })}>
-              <Column field="id" header="ID"></Column>
+              <Column field="id" header="Id"></Column>
               <Column field="instrumento" header="Instrumento"></Column>
               <Column field="imagen" header="Imagen"></Column>
               <Column field="precio" header="Precio"></Column>
-              <Column field="costoEnvio" header="CostoEnvio"></Column>
-              <Column field="cantidadVendida" header="CantidadVendida"></Column>
+              <Column field="costoEnvio" header="Costo Envio"></Column>
+              <Column field="cantidadVendida" header="Cantidad Vendida"></Column>
+              <Column field="marca" header="Marca"></Column>
+              <Column field="modelo" header="Modelo"></Column>
               <Column field="descripcion" header="Descripcion"></Column>
             </DataTable>
           </Panel>
@@ -233,6 +245,39 @@ class ListarInstrumentos extends Component {
                   }}/>
                 <label htmlFor="cantidadVendida">Cantidad Vendida</label>
               </span>
+              <br/>
+              <span className="p-float-label">
+                <InputText
+                  value={this.state.instrumento.marca}
+                  style={{ width: "100%" }}
+                  id="marca"
+                  onChange={(e) => {
+                    let valor = e.target.value;
+                    this.setState((previoState) => {
+                      let instrumento = Object.assign({},previoState.instrumento);
+                      instrumento.marca = valor;
+                      return { instrumento };
+                    });
+                  }}/>
+                <label htmlFor="marca">Marca </label>
+              </span>
+              <br/>
+              <span className="p-float-label">
+                <InputText
+                  value={this.state.instrumento.modelo}
+                  style={{ width: "100%" }}
+                  id="modelo"
+                  onChange={(e) => {
+                    let valor = e.target.value;
+                    this.setState((previoState) => {
+                      let instrumento = Object.assign({},previoState.instrumento);
+                      instrumento.modelo = valor;
+                      return { instrumento };
+                    });
+                  }}/>
+                <label htmlFor="modelo">Modelo</label>
+              </span>
+              
               <br/>
               <span className="p-float-label">
                 <InputText
