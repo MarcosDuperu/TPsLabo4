@@ -1,7 +1,0 @@
-package com.proyecto.react.repository;
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface InstrumentoRepository extends CrudRepository<Noticia, Long> {
-
-}

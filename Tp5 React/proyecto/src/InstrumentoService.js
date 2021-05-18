@@ -25,23 +25,16 @@ export class InstrumentoService extends Component {
       .then(res => res.data);
   }
   
-
-   crearConFoto(){
-    return axios
-    .post(this.BASEURL + 'crear-con-foto')
-    .then(res => res.data);
+   crearConImagen(instrumento, archivo){
+    const formData = new FormData();
+    formData.append('archivo', archivo);
+    formData.append('instrumento', instrumento.instrumento);
+    formData.append('precio', instrumento.precio);
+    formData.append('modelo', instrumento.modelo);
+    return axios.post( this.BASEURL + 'crear-con-imagen',formData).then(res =>res.data);
   }
 
-   editarConFoto(id){
-    return axios
-    .put(this.BASEURL+"editar-con-foto/"+ id)
-    .then(res => res.data);
-   
+  crear(e){
+    return axios.post(this.BASEURL,e, { headers: this.cabeceras}).then(res => res.data);
   }
-
-
-
-
-
-
 }

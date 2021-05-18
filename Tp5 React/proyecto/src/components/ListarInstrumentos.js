@@ -20,6 +20,7 @@ import "primeicons/primeicons.css";
 import { Button } from "primereact/button";
 //mensaje de guardado exitoso
 class ListarInstrumentos extends Component {
+ fotoSeleccionada;
   constructor() {
     super();
     this.state = {
@@ -45,7 +46,7 @@ class ListarInstrumentos extends Component {
         label: "Nuevo",
         icon: "pi pi-fw pi-plus",
         command: () => {
-          this.showSaveDialog(); //
+          this.crear(); //
         },
       },
       {
@@ -65,8 +66,11 @@ class ListarInstrumentos extends Component {
     ];
     this.instrumentoService = new InstrumentoService();
     //BINDS
+    this.crear = this.crear.bind(this);
     this.save = this.save.bind(this);
     this.delete = this.delete.bind(this);
+  
+    //this.crearConFoto = this.crearConFoto.bind(this);
     this.footer = (
       <div>
         <Button
@@ -82,6 +86,21 @@ class ListarInstrumentos extends Component {
   componentDidMount(){
     this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
   }
+  /**NUEVO---------------- */
+ crear() {
+  if(!this.fotoSeleccionada){
+    this.instrumentoService.crear(this.state.instrumento)
+      this.showSaveDialog();
+    
+  } else {
+   this.service.crearConFoto(this.state.instrumento, this.fotoSeleccionada)
+   this.showSaveDialog();
+    //toast.current.show({ severity: 'success', summary: 'Atención', detail: 'Se guardo el registro correctamente' });
+  }
+  alert("Se creo el registro correctamente");
+    this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
+}
+/**NUEVO---------------- */
   //metodo guardar
   save() {
     this.instrumentoService.save(this.state.instrumento).then(data => {
@@ -104,6 +123,8 @@ class ListarInstrumentos extends Component {
       this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
     });
   }
+
+
   //metodoEliminar
   delete() {
     if (window.confirm("¿Realmente desea eliminar el Registro?")) {
@@ -161,7 +182,7 @@ class ListarInstrumentos extends Component {
           <Menubar model={this.items} />
           <br/>
           <Panel header="Lista de Instrumentos">
-            <DataTable value={this.state.instrumentos} paginator={true} rows="4" selectionMode="single" selection={this.state.selectedInstrumento} onSelectionChange={e => this.setState({ selectedInstrumento: e.value })}>
+            <DataTable value={this.state.instrumentos} paginator={true} rows='4' selectionMode="single" selection={this.state.selectedInstrumento} onSelectionChange={e => this.setState({ selectedInstrumento: e.value })}>
               <Column field="id" header="Id"></Column>
               <Column field="instrumento" header="Instrumento"></Column>
               <Column field="imagen" header="Imagen"></Column>
