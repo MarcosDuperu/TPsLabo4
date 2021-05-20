@@ -1,4 +1,4 @@
-# proyectovue
+# proyecto
 
 ## Project setup
 ```

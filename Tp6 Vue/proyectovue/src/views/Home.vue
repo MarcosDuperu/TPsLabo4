@@ -1,18 +1,13 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+ <div class="jumbotron jumbotron-fluid, animated fadeIn">
+              <div class="container">
+                <h1 class="display-4">Musical Hendrix</h1>
+                <p class="lead">
+                  Tienda de instrumentos musicales con ya más de 15 años de
+                  experiencia. Tenemos el conocimiento y la capacidad como para
+                  informarte acerca de las mejores elecciones para tu compra
+                  musical.
+                </p>
+              </div>
+            </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
-</script>
