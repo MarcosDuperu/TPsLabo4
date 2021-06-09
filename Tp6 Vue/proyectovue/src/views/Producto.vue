@@ -5,7 +5,7 @@
         <div
           v-for="instrumento in instrumentosData"
           :key="instrumento.id"
-          style="margin-top:15px"
+          style="margin-top: 15px"
         >
           <instrumento-item :instrumentoParam="instrumento"></instrumento-item>
         </div>
@@ -21,23 +21,29 @@ import Instrumento from "@/components/Instrumento.vue";
 export default {
   name: "Producto",
   components: {
-    "instrumento-item": Instrumento
+    "instrumento-item": Instrumento,
   },
   mounted() {
     this.getInstrumentos();
   },
   data() {
     return {
-      instrumentosData: []
+      instrumentosData: [],
     };
   },
   methods: {
-    async getInstrumentos() {
+    /* async getInstrumentos() {
       const res = await fetch("/instrumentos.json");
       const resJson = await res.json();
       console.log(resJson);
       this.instrumentosData = resJson.instrumentos;
-    }
-  }
+    } */
+    async getInstrumentos() {
+      const res = await fetch("http://localhost:3000/api/instrumento/");
+      const insts = await res.json();
+      this.instrumentosData = insts;
+      console.log(insts);
+    },
+  },
 };
 </script>
