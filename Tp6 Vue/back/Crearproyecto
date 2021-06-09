@@ -1,0 +1,16 @@
+npm init -y
+crear app.js y config.js
+npm i express nodemon cors sequelize mysql2
+modificar scripts "dev": "nodemon app.js"
+modificar main "main": "app.js"
+config.js datos de bd
+module.exports = {
+  database: {
+    username: "root",
+    password: "",
+    database: "sequelize",
+    host: "localhost",
+  },
+};
+
+npm i sequelize mysql2
