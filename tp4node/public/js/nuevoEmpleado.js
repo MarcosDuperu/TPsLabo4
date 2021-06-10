@@ -35,7 +35,7 @@ import { nuevoEmpleado } from './API.js';
             mostrarAlerta('Todos los campos son obligatorios');
             return;
         }
-
+        debugger;
         nuevoEmpleado(empleado);
     }
 
