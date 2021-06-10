@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { instrumentos } from "../data/instrumentos.json";
 import Button from "react-bootstrap/Button";
-import Tarjeta from "./Tarjeta";
 
 class DetalleInstrumento extends Component {
   constructor() {
@@ -24,9 +23,11 @@ class DetalleInstrumento extends Component {
     return (
       <React.Fragment>
         <Navigation></Navigation>
-        <Container>
+        <Container style={{ margin: "2rem" }} >
           <Row>
             <Col>
+            <br></br>
+            <div align="center">
               <img
                 className="minAltoImg"
                 src={
@@ -34,8 +35,10 @@ class DetalleInstrumento extends Component {
                     .default
                 }
               />
+              </div>
+              <br></br>
               <tr></tr>
-              Descripcion: <tr></tr>
+              Descripcion: <tr/> <br></br>
               <p>{InstrumentoEncontrado[0].descripcion}</p>
             </Col>
             <Col>
@@ -65,19 +68,19 @@ class DetalleInstrumento extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col>
+                <Col><br></br>
                   Costo Envio:
-                  <h5>
-                    {InstrumentoEncontrado[0].costoEnvio == "G" ? (
-                      <p>
+                  <h5> <br></br>
+                    {InstrumentoEncontrado[0].costoEnvio === "G" ? (
+                      <p style={{ color: "green" }}>
                         <img
                           className="minAltoImg"
                           src={require(`../assets/img/camion.png`).default}
-                        />{" "}
+                        />
                         Envío Gratis a todo el País
                       </p>
                     ) : (
-                      <p>{`Costo de Envio Interior de Argentina: $ ${InstrumentoEncontrado[0].costoEnvio}`}</p>
+                      <p style={{ color: "red" }}>{`Costo de Envio Interior de Argentina: $ ${InstrumentoEncontrado[0].costoEnvio}`}</p>
                     )}
                   </h5>
                 </Col>
@@ -85,7 +88,7 @@ class DetalleInstrumento extends Component {
               <br></br>
               <Row>
                 <Col>
-                  <Button variant="outline-success" className="nav-Link">
+                  <Button variant="outline-success" className="nav-Link" style={{ margin: "2rem" }}>
                     <h5>Agregar al Carrito</h5>
                   </Button>
                   <Button

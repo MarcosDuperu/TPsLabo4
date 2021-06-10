@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import { instrumentos } from "../data/instrumentos.json";
 import Tarjeta from "./Tarjeta";
 import Navigation from "./Navigation";
@@ -31,7 +30,7 @@ class Productos extends Component {
       <React.Fragment>
         <Navigation></Navigation>
         <Container>
-          <Row>{instrumentos}</Row>
+          <list>{instrumentos}</list>
         </Container>
       </React.Fragment>
     );
