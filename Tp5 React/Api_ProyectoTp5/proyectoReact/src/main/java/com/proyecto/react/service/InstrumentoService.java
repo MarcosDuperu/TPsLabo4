@@ -14,4 +14,6 @@ public Iterable<Instrumento> findAll();
 	
 	public void deleteById (Long id);
 	
+	public Instrumento update(Long id, Instrumento instrumento)throws Exception;
+	
 }

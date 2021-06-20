@@ -8,14 +8,42 @@ class Productos extends Component {
   constructor() {
     super();
     //el estado es el que tiene el control de los datos en este caso de instrumentos
-    this.state = {
-      instrumentos //le asignamos el json
-    };
+    this.state = ({
+      instrumentosdb: [], //le asignamos el json
+    });
+
   }
+  //LEER Teoria https://es.reactjs.org/docs/react-component.html#overview
+  //Este método se invoca inmediatamente después de que un componente se monte 
+  //este es un buen lugar para instanciar la solicitud de red.
+  componentDidMount() {
+    this._isMounted = true;
+    this.getInstrumentosServer();
+  }
+
+  //Este método es llamado cuando un componente se elimina del DOM
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  getInstrumentosServer() {
+    //local host 3306
+    fetch('http://localhost:3306/api/instrumento/')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ instrumentosdb: responseJson });
+      });
+
+  }
+
+
+
+
+
   render() {
-    const instrumentos = this.state.instrumentos.map((instrumento, i) => {
+    const instrumentos = this.state.instrumentosdb.map((instrumento, i) => {
       return (
-        <Tarjeta
+        <TarjetaCrud
           key={instrumento.id}
           id={instrumento.id}
           instrumento={instrumento.instrumento}
@@ -23,7 +51,7 @@ class Productos extends Component {
           costoEnvio={instrumento.costoEnvio}
           imagen={instrumento.imagen}
           cantidadVendida={instrumento.cantidadVendida}
-        ></Tarjeta>
+        ></TarjetaCrud>
       );
     });
     return (

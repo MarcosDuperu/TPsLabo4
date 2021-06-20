@@ -32,7 +32,7 @@ public class Instrumento {
 	private double precio;
 
 	@Column(name = "costoEnvio")
-	private double costoEnvio;
+	private String costoEnvio;
 
 	@Column(name = "canidadVendida")
 	private int cantidadVendida;
@@ -80,11 +80,11 @@ public class Instrumento {
 		this.precio = precio;
 	}
 
-	public double getCostoEnvio() {
+	public String getCostoEnvio() {
 		return costoEnvio;
 	}
 
-	public void setCostoEnvio(double costoEnvio) {
+	public void setCostoEnvio(String costoEnvio) {
 		this.costoEnvio = costoEnvio;
 	}
 
