@@ -5,7 +5,7 @@ import { Instrumento } from 'src/app/entidades/Instrumento';
 
 @Component({
   selector: 'app-Instrumento',
-  templateUrl: './Instrumento.component.html',
+  templateUrl: './instrumento.component.html',
 })
 export class InstrumentoComponent implements OnInit {
   InstrumentosArr: Instrumento[] = [];

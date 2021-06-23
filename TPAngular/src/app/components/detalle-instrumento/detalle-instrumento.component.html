@@ -8,7 +8,7 @@
     <a [routerLink]="['/instrumento']" class="btn btn-outline-danger btn-block">Regresar</a>
   </div>
   <div class="col-md-8">
-    <h3 style="color: crimson">{{plato.instrumento}}</h3>
+    <h3 style="color: crimson">{{instrumento.instrumento}}</h3>
     <hr>
     <p><b>Precio:</b> ${{instrumento.precio}}</p>
     <p><b>Marca:</b> {{instrumento.marca}}</p>
@@ -26,7 +26,7 @@
           Envío Gratis a todo el País
         </span>
         <span *ngIf="instrumento.envio != 'G'" style="color: red">Costo de Envio Interior de Argentina: $
-          {{Instrumento.costoEnvio}}</span>
+          {{instrumento.costoEnvio}}</span>
       </h5>
     </div>
   </div>

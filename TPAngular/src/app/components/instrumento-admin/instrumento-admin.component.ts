@@ -10,15 +10,16 @@ import { NgForm } from '@angular/forms';
 })
 export class InstrumentoAdminComponent implements OnInit {
   instrumento: Instrumento = {
-    id: '0',
-    instrumento: '',
-    precio: '',
-    marca: '',
-    modelo: '',
-    costoEnvio: '',
-    cantidadVendida: '',
-    imagen: '',
-    descripcion: '',
+   id:"0",
+  instrumento: "",
+  precio: "",
+  envio: "",
+  marca: "",
+  modelo:"",
+  costoEnvio:"",
+  cantidadVendida:"",
+  imagen: "",
+  descripcion:""
   };
   new = false;
   idinstrumento!: string;
@@ -91,6 +92,7 @@ export class InstrumentoAdminComponent implements OnInit {
       precio: '',
       marca: '',
       modelo: '',
+      envio: '',
       costoEnvio: '',
       cantidadVendida: '',
       imagen: '',

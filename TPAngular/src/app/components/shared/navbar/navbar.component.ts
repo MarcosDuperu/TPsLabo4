@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
 
@@ -13,7 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buscarPlatos(textoBusqueda:string){
+  buscarInstrumentos(textoBusqueda:string){
     this.router.navigate(['/buscar', textoBusqueda]);
   }
 
