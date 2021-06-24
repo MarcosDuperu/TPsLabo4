@@ -40,6 +40,6 @@ public class Instrumento extends Base {
     @Column(name = "imagen")
     private String imagen;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", length = 1000)
     private String descripcion;
 }

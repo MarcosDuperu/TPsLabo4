@@ -1,33 +1,45 @@
-<h1>{{instrumento.instrumento | uppercase}}</h1>
-<hr>
 <div class="row">
   <div class="col-md-4" style="text-align: center;">
     <img src="assets/img/{{instrumento.imagen}}" style="max-width: 300px;" class="img-fluid"
       [alt]="instrumento.instrumento">
+    <p><b>Descripcion:</b> {{instrumento.descripcion}}</p>
     <br><br>
-    <a [routerLink]="['/instrumento']" class="btn btn-outline-danger btn-block">Regresar</a>
+
   </div>
   <div class="col-md-8">
-    <h3 style="color: crimson">{{instrumento.instrumento}}</h3>
+    <p style="font-size: small; color:darkgray">{{instrumento.cantidadVendida}} vendidos</p>
+    <h3>{{instrumento.instrumento}}</h3>
     <hr>
-    <p><b>Precio:</b> ${{instrumento.precio}}</p>
+    <p style="font-size: xx-large;"> ${{instrumento.precio}}</p>
     <p><b>Marca:</b> {{instrumento.marca}}</p>
     <p><b>Modelo:</b>{{instrumento.modelo}}</p>
-    <p><b>Descripcion:</b> {{instrumento.descripcion}}</p>
+
     <div>
-      <span *ngIf="instrumento.envio == 'Bebidas'" style="color:red; font-weight: bold;">
+      <!-- <span *ngIf="instrumento.costoEnvio == 'G'" style="color:red; font-weight: bold;">
         Es Bebida
-      </span>
+      </span> -->
       <br>
       Costo Envio:
       <h5> <br>
-        <span *ngIf="instrumento.envio == 'G'" style=" color: green;">
+        <span *ngIf="instrumento.costoEnvio == 'G'" style=" color: green;">
           <img src="assets/img/camion.png" />
           Envío Gratis a todo el País
         </span>
-        <span *ngIf="instrumento.envio != 'G'" style="color: red">Costo de Envio Interior de Argentina: $
-          {{instrumento.costoEnvio}}</span>
+        <!--  <span *ngIf="instrumento.costoEnvio != 'G'" style="color: red">Costo de Envio Interior de Argentina: $
+          {{instrumento.costoEnvio}}</span> -->
       </h5>
+      <div class="container">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a (click)="carrito()" class="btn btn-outline-primary my-2 my-sm-0">Añadir al Carrito</a>
+
+            <a [routerLink]="['/instrumento']" class="btn btn-outline-primary my-2 my-sm-0">Regresar</a>
+
+          </li>
+        </ul>
+
+      </div>
+
     </div>
   </div>
 </div>

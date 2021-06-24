@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'dondeEstamos', component: DondeEstamosComponent },
   { path: 'instrumento', component: InstrumentoComponent },
-  { path: 'detalleinstrumento/:id', component: DetalleInstrumentoComponent },
+  { path: 'detalleInstrumento/:id', component: DetalleInstrumentoComponent },
   { path: 'buscar/:termino', component: BuscadorComponent },
   { path: 'lista', component: InstrumentoListaComponent },
   { path: 'admin/:id', component: InstrumentoAdminComponent },

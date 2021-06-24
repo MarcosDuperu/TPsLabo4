@@ -24,4 +24,8 @@ export class DetalleInstrumentoComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  carrito() {
+    alert("Carrito no disponible")
+  }
 }
