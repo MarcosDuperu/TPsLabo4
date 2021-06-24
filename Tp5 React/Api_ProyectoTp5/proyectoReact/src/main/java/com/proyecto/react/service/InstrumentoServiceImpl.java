@@ -40,5 +40,20 @@ public class InstrumentoServiceImpl implements InstrumentoService {
 	public void deleteById(Long id) {
 		instrumentoRepository.deleteById(id);
 	}
+	
+	@Override
+	@Transactional
+	public Instrumento update(Long id, Instrumento instrumento) throws Exception {
+		try {
+			Optional<Instrumento> instrumentoOptional = instrumentoRepository.findById(id);
+			Instrumento inst = instrumentoOptional.get();
+			inst = instrumentoRepository.save(instrumento);
+			return inst;
+			
+				
+		}catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 
 }

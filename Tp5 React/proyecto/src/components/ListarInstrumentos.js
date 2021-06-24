@@ -25,17 +25,7 @@ class ListarInstrumentos extends Component {
     super();
     this.state = {
       visible: false,
-      instrumento: {
-        id: null,
-        instrumento: null,
-        precio: null,
-        costoEnvio: null,
-        cantidadVendida: null,
-        marca: null,
-        modelo: null,
-        descripcion: null,
-        imagen: null
-      },
+      instrumento: [],
       //para seleccionar instrumentos en la lista para poder editarla o eliminarla 
       selectedInstrumento: {
 
@@ -46,7 +36,7 @@ class ListarInstrumentos extends Component {
         label: "Nuevo",
         icon: "pi pi-fw pi-plus",
         command: () => {
-          this.crear(); //
+          this.showSaveDialog(); //
         },
       },
       {
@@ -66,15 +56,14 @@ class ListarInstrumentos extends Component {
     ];
     this.instrumentoService = new InstrumentoService();
     //BINDS
-    this.crear = this.crear.bind(this);
     this.save = this.save.bind(this);
     this.delete = this.delete.bind(this);
   
-    //this.crearConFoto = this.crearConFoto.bind(this);
+    //aca se ocupa el metodo save 
     this.footer = (
       <div>
         <Button
-          label="Guardar"
+          label="Crear"
           className="p-button p-component p-button-success p-button-text"
           onClick={this.save}
         />
@@ -86,37 +75,12 @@ class ListarInstrumentos extends Component {
   componentDidMount(){
     this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
   }
-  /**NUEVO---------------- */
- crear() {
-  if(!this.fotoSeleccionada){
-    this.instrumentoService.crear(this.state.instrumento)
-      this.showSaveDialog();
-    
-  } else {
-   this.service.crearConFoto(this.state.instrumento, this.fotoSeleccionada)
-   this.showSaveDialog();
-    //toast.current.show({ severity: 'success', summary: 'Atención', detail: 'Se guardo el registro correctamente' });
-  }
-  alert("Se creo el registro correctamente");
-    this.instrumentoService.getAll().then(data => this.setState({instrumentos: data}))
-}
-/**NUEVO---------------- */
-  //metodo guardar
+  //metodo guardarcls
   save() {
     this.instrumentoService.save(this.state.instrumento).then(data => {
       this.setState({
         visible: false,
-        instrumento: {
-          id: null,
-          instrumento: null,
-          precio: null,
-          costoEnvio: null,
-          cantidadVendida: null,
-          marca: null,
-          modelo: null,
-          descripcion: null,
-          imagen: null
-        }//hay que ver si se puede implementar un metodo q tenga esto para no repetir tanto codigo!!
+        instrumento:  [],//hay que ver si se puede implementar un metodo q tenga esto para no repetir tanto codigo!!
       });
       //toast.current.show({ severity: 'success', summary: 'Atención', detail: 'Se guardo el registro correctamente' });
       alert("Se guardo el registro correctamente");
@@ -159,17 +123,7 @@ class ListarInstrumentos extends Component {
     this.setState({
       visible: true,
       //estp es para vaciar el input luego de cargar un registro
-      instrumento: {
-        id: null,
-        instrumento: null,
-        precio: null,
-        costoEnvio: null,
-        cantidadVendida: null,
-        marca: null,
-        modelo: null,
-        descripcion: null,
-        imagen: null
-      }
+      instrumento:  [],
     })
   //  document.getElementById('instrumentoF').reset();//obtenemos el formulario y reseteamos el formulario 
   }

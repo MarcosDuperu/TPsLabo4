@@ -37,33 +37,37 @@ public class InstrumentoController {
 	@Autowired
 	protected InstrumentoServiceImpl service;
 
-	@GetMapping("/listar-instrumentos")
+	@GetMapping("/listar-instrumentos") //listar todos
 	public ResponseEntity<?> listarInstrumentos() {
-		return ResponseEntity.ok().body(service.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 
-	@GetMapping("/mostrar-instrumento/{id}")
-	public ResponseEntity<?> mostrarInstrumentos(@PathVariable long id) {
+	//listar 1
+	@GetMapping("/mostrar-instrumento/{id}") //listar 1
+	public ResponseEntity<?> listarPorId(@PathVariable long id) {
 		Optional<Instrumento> o = service.findById(id);
 		if (o.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(o.get());
+		return ResponseEntity.status(HttpStatus.OK).body(o.get());
 	}
 
-	@PostMapping("/crear-instrumento")
-	public ResponseEntity<?> crearInstrumento(@RequestBody Instrumento instrumento) {
+	//save
+	@PostMapping("/guardar-instrumento") //para guardar
+	public ResponseEntity<?> guardarInstrumento(@RequestBody Instrumento instrumento, BindingResult result) {
 		Instrumento instrumentoDB = service.save(instrumento);
-		return ResponseEntity.status(HttpStatus.CREATED).body(instrumentoDB);
+		return ResponseEntity.status(HttpStatus.OK).body(instrumentoDB);
 	}
 
-	@DeleteMapping("{id}")
+	//para eliminar
+	@DeleteMapping("{id}") //eliminar por id
 	public ResponseEntity<?> eliminarInstrumento(@PathVariable Long id) {
 		service.deleteById(id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	@PutMapping("/editar-instrumento/{id}")
+	//capaz no se use
+	@PutMapping("/editar-instrumento/{id}") //editar por id
 	public ResponseEntity<?> editarInstrumento(@RequestBody Instrumento instrumento, @PathVariable Long id) {
 		Optional<Instrumento> o = service.findById(id);
 		if (o.isEmpty()) {
@@ -81,32 +85,51 @@ public class InstrumentoController {
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(instrumentoDB));
 	}
+	
+	@PutMapping("/{id}")//actualizar "update"
+	public ResponseEntity<?> actualizar(@Valid @PathVariable Long id,@RequestBody Instrumento instrumento,BindingResult result){
+	    	if (result.hasErrors()) {
+				return this.validar(result);
+			}
+	        try {
+	            return ResponseEntity.status(HttpStatus.OK).body(service.update(id,instrumento));
 
-	@GetMapping("/uploads/img/{id}")
-	public ResponseEntity<?> verImagen(@PathVariable Long id) {
-
-		Optional<Instrumento> imag = service.findById(id);
-
-		if (imag.isEmpty() || imag.get().getImagen() == null) {
-			return ResponseEntity.notFound().build();
+	        }catch (Exception e){
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"error por favor intente mas tarde.\"}");
+	        }
+	    }
+  
+	protected ResponseEntity<?> validar(BindingResult result) {
+			Map<String, Object> errores = new HashMap<>();
+			result.getFieldErrors().forEach(err -> {
+				errores.put(err.getField(), " El campo " + err.getField() + " " + err.getDefaultMessage());
+			});
+			return ResponseEntity.badRequest().body(errores);
 		}
 
-		Resource imagen = new ByteArrayResource(imag.get().getImagen()); // pasamos bytes como argumentos
+	// PARA CREAR Y EDITAR EL INSTRUMENTO CON IMAGENES// me quede aca
 
-		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imagen);
-	}
-
-	// PARA CREAR Y EDITAR EL INSTRUMENTO CON IMAGENES//
-
-	@PostMapping("/crear-con-imagen")
+	@PostMapping("/crear-con-imagen")// crear con imagens
 	public ResponseEntity<?> crearInsConImag(@Valid Instrumento instrumento, BindingResult result,
 			@RequestParam MultipartFile archivo) throws IOException {
-		if (!archivo.isEmpty()) {
-			instrumento.setImagen(archivo.getBytes());
+		if(!archivo.isEmpty()) {
+			try {
+				
+				instrumento.setImagen(archivo.getBytes());
+			} catch (Exception e) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"falla al obtener la imagen.\"}"+e.getMessage());
+			}
 		}
-		return this.crear(instrumento, result);
+		try {
+			//sino guardarInstrumento
+			return crear(instrumento, result);
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"falla al insertar en la db.\"}"+e.getMessage());
+		}
 	}
 
+	//pued que se use
 	@PostMapping
 	public ResponseEntity<?> crear(@Valid @RequestBody Instrumento instrumento, BindingResult result) {
 
@@ -117,18 +140,18 @@ public class InstrumentoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(instrumentoDB);
 	}
 
-	@PutMapping("/editar-con-foto/{id}")
+	@PutMapping("/editar-con-foto/{id}") //editar con imagen 
 	public ResponseEntity<?> editarConFoto(@Valid Instrumento instrumento, BindingResult result, @PathVariable Long id,
 			@RequestParam MultipartFile archivo) throws IOException {
 
-		if (result.hasErrors()) {
-			return this.validar(result);
+		Optional<Instrumento> i;
+		try {
+			 i = service.findById(id);
+			 			
 		}
-
-		Optional<Instrumento> i = service.findById(id);
-
-		if (i.isEmpty()) {
-			return ResponseEntity.notFound().build();
+		catch(Exception e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"error por favor intente mas tarde.\"}");
+						
 		}
 
 		Instrumento instrumentoDB = i.get();
@@ -139,7 +162,6 @@ public class InstrumentoController {
 		instrumentoDB.setModelo(instrumento.getModelo());
 		instrumentoDB.setMarca(instrumento.getMarca());
 		instrumentoDB.setPrecio(instrumento.getPrecio());
-		instrumentoDB.setImagen(instrumento.getImagen());
 
 		if (!archivo.isEmpty()) {
 			instrumentoDB.setImagen(archivo.getBytes());
@@ -148,12 +170,9 @@ public class InstrumentoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(instrumentoDB));
 	}
 
-	protected ResponseEntity<?> validar(BindingResult result) {
-		Map<String, Object> errores = new HashMap<>();
-		result.getFieldErrors().forEach(err -> {
-			errores.put(err.getField(), " El campo " + err.getField() + " " + err.getDefaultMessage());
-		});
-		return ResponseEntity.badRequest().body(errores);
-	}
+	
+	
+	
+
 
 }
