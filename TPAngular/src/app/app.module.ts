@@ -9,6 +9,9 @@ import { DondeEstamosComponent } from './components/dondeEstamos/dondeEstamos.co
 import { InstrumentoComponent } from './components/instrumento/instrumento.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+//Google maps
+import { AgmCoreModule } from '@agm/core';
+
 import { InstrumentoService } from './servicios/instrumento.service';
 import { DetalleInstrumentoComponent } from './components/detalle-instrumento/detalle-instrumento.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
@@ -38,6 +41,9 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBHnH23oXzl37egmraORKVimYtaODhWhBw"
+    })
   ],
   providers: [InstrumentoService],
   bootstrap: [AppComponent],
